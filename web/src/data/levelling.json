@@ -1,0 +1,4664 @@
+{
+  "Alchemy": {
+    "recipes": [
+      {
+        "id": 1230866,
+        "name": "Silvermoon Health Potion",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 6
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "yellowAt": 7,
+        "greenAt": 7,
+        "greyAt": 7,
+        "itemId": 241304
+      },
+      {
+        "id": 1233129,
+        "name": "Recycle Potions",
+        "profession": "Alchemy",
+        "reagents": [],
+        "free": true,
+        "minSkill": 7,
+        "skillPoints": 1,
+        "guideCrafts": 10,
+        "flatChance": 1,
+        "yellowAt": 20,
+        "greenAt": 20,
+        "greyAt": 20
+      },
+      {
+        "id": 1230868,
+        "name": "Refreshing Serum",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 8
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "itemId": 241306
+      },
+      {
+        "id": 1230865,
+        "name": "Lightfused Mana Potion",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 8
+          },
+          {
+            "itemId": 236778,
+            "name": "Mana Lily",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "itemId": 241300
+      },
+      {
+        "id": 1230861,
+        "name": "Primal Philosopher's Stone",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 0,
+            "name": "Stabilized Derivate",
+            "quantity": 2
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 2
+          },
+          {
+            "itemId": 241306,
+            "name": "Refreshing Serum",
+            "quantity": 5
+          }
+        ],
+        "itemId": 241291
+      },
+      {
+        "id": 1230887,
+        "name": "Transmute: Mote of Wild Magic",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 10
+          },
+          {
+            "itemId": 0,
+            "name": "Stabilized Derivate",
+            "quantity": 1
+          }
+        ],
+        "itemId": 236951
+      },
+      {
+        "id": 1230855,
+        "name": "Composite Flora",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 4
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 4
+          },
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 6
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 4
+          }
+        ],
+        "itemId": 241280
+      },
+      {
+        "id": 1230886,
+        "name": "Enlightenment Tonic",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "itemId": 241338
+      },
+      {
+        "id": 1230854,
+        "name": "Entropic Extract",
+        "profession": "Alchemy",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "itemId": 268954
+      },
+      {
+        "id": 1230868,
+        "name": "Refreshing Serum, Lightfused Mana Potion, Primal Philosopher's Stone, Transmute: Mote of Wild Magic, Composite Flora, Enlightenment Tonic, Entropic Extract",
+        "profession": "Alchemy",
+        "once": true,
+        "minSkill": 20,
+        "yellowAt": 27,
+        "greenAt": 27,
+        "greyAt": 27,
+        "skillPoints": 7,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 28
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 20
+          },
+          {
+            "itemId": 236778,
+            "name": "Mana Lily",
+            "quantity": 3
+          },
+          {
+            "itemId": 0,
+            "name": "Stabilized Derivate",
+            "quantity": 3
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 12
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 4
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 4
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 4
+          }
+        ],
+        "itemId": 241306
+      },
+      {
+        "id": 1230854,
+        "name": "Entropic Extract",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 27,
+        "skillPoints": 1,
+        "flatChance": 0.625,
+        "yellowAt": 32,
+        "greenAt": 32,
+        "greyAt": 32,
+        "itemId": 268954
+      },
+      {
+        "id": 1230866,
+        "name": "Silvermoon Health Potion",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 6
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 32,
+        "skillPoints": 1,
+        "flatChance": 0.6,
+        "yellowAt": 50,
+        "greenAt": 50,
+        "greyAt": 50,
+        "itemId": 241304
+      },
+      {
+        "id": 1230869,
+        "name": "Light's Potential",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          },
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 8
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 3
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 3
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 241308
+      },
+      {
+        "id": 1230876,
+        "name": "Flask of the Magisters",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 2
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 8
+          },
+          {
+            "itemId": 236778,
+            "name": "Mana Lily",
+            "quantity": 6
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "yellowAt": 90,
+        "greenAt": 90,
+        "greyAt": 90,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "itemId": 241322
+      },
+      {
+        "id": 1230876,
+        "name": "Flask of the Magisters",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 2
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 8
+          },
+          {
+            "itemId": 236778,
+            "name": "Mana Lily",
+            "quantity": 6
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 95,
+        "greenAt": 95,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 241322
+      },
+      {
+        "id": 1230877,
+        "name": "Flask of the Blood Knights",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 2
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 6
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 8
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "yellowAt": 90,
+        "greenAt": 90,
+        "greyAt": 90,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "itemId": 241324
+      },
+      {
+        "id": 1230877,
+        "name": "Flask of the Blood Knights",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 2
+          },
+          {
+            "itemId": 236770,
+            "name": "Sanguithorn",
+            "quantity": 6
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 8
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 95,
+        "greenAt": 95,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 241324
+      },
+      {
+        "id": 1230878,
+        "name": "Flask of the Shattered Sun",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 2
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 6
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "yellowAt": 90,
+        "greenAt": 90,
+        "greyAt": 90,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "itemId": 241326
+      },
+      {
+        "id": 1230878,
+        "name": "Flask of the Shattered Sun",
+        "profession": "Alchemy",
+        "reagents": [
+          {
+            "itemId": 236780,
+            "name": "Nocturnal Lotus",
+            "quantity": 1
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 2
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          },
+          {
+            "itemId": 236776,
+            "name": "Argentleaf",
+            "quantity": 6
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 95,
+        "greenAt": 95,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 241326
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 236761,
+        "name": "Tranquility Bloom",
+        "quantity": 300
+      },
+      {
+        "itemId": 236770,
+        "name": "Sanguithorn",
+        "quantity": 15
+      },
+      {
+        "itemId": 236949,
+        "name": "Mote of Light",
+        "quantity": 12
+      },
+      {
+        "itemId": 236776,
+        "name": "Argentleaf",
+        "quantity": 4
+      },
+      {
+        "itemId": 236950,
+        "name": "Mote of Primal Energy",
+        "quantity": 4
+      },
+      {
+        "itemId": 236778,
+        "name": "Mana Lily",
+        "quantity": 3
+      }
+    ]
+  },
+  "Blacksmithing": {
+    "recipes": [
+      {
+        "id": 1230761,
+        "name": "Refulgent Copper Ingot",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 237359,
+            "name": "Refulgent Copper Ore",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "flatChance": 0.56,
+        "yellowAt": 15,
+        "greenAt": 15,
+        "greyAt": 15,
+        "itemId": 238197
+      },
+      {
+        "id": 1230763,
+        "name": "Sterling Alloy",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 243060,
+            "name": "Luminant Flux",
+            "quantity": 4
+          },
+          {
+            "itemId": 237364,
+            "name": "Brilliant Silver Ore",
+            "quantity": 6
+          },
+          {
+            "itemId": 238197,
+            "name": "Refulgent Copper Ingot",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "skillPoints": 1,
+        "flatChance": 0.4,
+        "yellowAt": 70,
+        "greenAt": 70,
+        "greyAt": 70,
+        "itemId": 238204
+      },
+      {
+        "id": 1229598,
+        "name": "Sun-Blessed Blacksmith's Hammer",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 238018
+      },
+      {
+        "id": 1229603,
+        "name": "Sun-Blessed Blacksmith's Toolbox",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 237952
+      },
+      {
+        "id": 1229599,
+        "name": "Sun-Blessed Leatherworker's Knife",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 238017
+      },
+      {
+        "id": 1229604,
+        "name": "Sun-Blessed Leatherworker's Toolset",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238529,
+            "name": "Majestic Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 237951
+      },
+      {
+        "id": 1229605,
+        "name": "Sun-Blessed Needle Set",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 237950
+      },
+      {
+        "id": 1229601,
+        "name": "Sun-Blessed Pickaxe",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 238015
+      },
+      {
+        "id": 1229602,
+        "name": "Sun-Blessed Sickle",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 238014
+      },
+      {
+        "id": 1229600,
+        "name": "Sun-Blessed Skinning Knife",
+        "profession": "Blacksmithing",
+        "reagents": [
+          {
+            "itemId": 238204,
+            "name": "Sterling Alloy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 237366,
+            "name": "Dazzling Thorium",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 70,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 238016
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 237359,
+        "name": "Refulgent Copper Ore",
+        "quantity": 125
+      },
+      {
+        "itemId": 238197,
+        "name": "Refulgent Copper Ingot",
+        "quantity": 100
+      },
+      {
+        "itemId": 237364,
+        "name": "Brilliant Silver Ore",
+        "quantity": 6
+      },
+      {
+        "itemId": 237362,
+        "name": "Umbral Tin Ore",
+        "quantity": 6
+      },
+      {
+        "itemId": 242788,
+        "name": "Duskshrouded Stone",
+        "quantity": 1
+      },
+      {
+        "itemId": 237364,
+        "name": "Brilliant Silver Ore",
+        "quantity": 300
+      },
+      {
+        "itemId": 238197,
+        "name": "Refulgent Copper Ingot",
+        "quantity": 150
+      }
+    ]
+  },
+  "Enchanting": {
+    "recipes": [
+      {
+        "id": 1236486,
+        "name": "Runed Refulgent Copper Rod",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 244174,
+            "name": "Refulgent Copper Rod",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "flatChance": 0.8,
+        "yellowAt": 25,
+        "greenAt": 25,
+        "greyAt": 25,
+        "itemId": 244175
+      },
+      {
+        "id": 1236083,
+        "name": "Enchant Helm - Rune of Avoidance",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 25,
+        "yellowAt": 26,
+        "greenAt": 26,
+        "greyAt": 26,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "itemId": 244004
+      },
+      {
+        "id": 1236491,
+        "name": "Thalassian Phoenix Oil",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 25,
+        "yellowAt": 26,
+        "greenAt": 26,
+        "greyAt": 26,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "itemId": 243733
+      },
+      {
+        "id": 1236083,
+        "name": "Enchant Helm - Rune of Avoidance, Thalassian Phoenix Oil",
+        "profession": "Enchanting",
+        "once": true,
+        "minSkill": 25,
+        "yellowAt": 27,
+        "greenAt": 27,
+        "greyAt": 27,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 240991,
+            "name": "Sunglass Vial",
+            "quantity": 1
+          }
+        ],
+        "itemId": 244004
+      },
+      {
+        "id": 1236073,
+        "name": "Enchant Ring - Nature's Wrath",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 27,
+        "yellowAt": 28,
+        "greenAt": 28,
+        "greyAt": 28,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "itemId": 243984
+      },
+      {
+        "id": 1236098,
+        "name": "Illusory Adornment - Blooming Light",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 27,
+        "yellowAt": 28,
+        "greenAt": 28,
+        "greyAt": 28,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 2
+          }
+        ],
+        "itemId": 244032
+      },
+      {
+        "id": 1236073,
+        "name": "Enchant Ring - Nature's Wrath, Illusory Adornment - Blooming Light",
+        "profession": "Enchanting",
+        "once": true,
+        "minSkill": 27,
+        "yellowAt": 29,
+        "greenAt": 29,
+        "greyAt": 29,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 7
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          }
+        ],
+        "itemId": 243984
+      },
+      {
+        "id": 1236073,
+        "name": "Enchant Ring - Nature's Wrath",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 29,
+        "skillPoints": 1,
+        "flatChance": 0.6923076923076923,
+        "yellowAt": 38,
+        "greenAt": 38,
+        "greyAt": 38,
+        "itemId": 243984
+      },
+      {
+        "id": 1236098,
+        "name": "Illusory Adornment - Blooming Light",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 29,
+        "skillPoints": 1,
+        "flatChance": 0.6923076923076923,
+        "yellowAt": 38,
+        "greenAt": 38,
+        "greyAt": 38,
+        "itemId": 244032
+      },
+      {
+        "id": 1236061,
+        "name": "Enchant Shoulders - Flight of the Eagle",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 38,
+        "yellowAt": 39,
+        "greenAt": 39,
+        "greyAt": 39,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "itemId": 243960
+      },
+      {
+        "id": 1236055,
+        "name": "Enchant Helm - Hex of Leeching",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 38,
+        "yellowAt": 39,
+        "greenAt": 39,
+        "greyAt": 39,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "itemId": 243948
+      },
+      {
+        "id": 1236061,
+        "name": "Enchant Shoulders - Flight of the Eagle, Enchant Helm - Hex of Leeching",
+        "profession": "Enchanting",
+        "once": true,
+        "minSkill": 38,
+        "yellowAt": 40,
+        "greenAt": 40,
+        "greyAt": 40,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 30
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 6
+          }
+        ],
+        "itemId": 243960
+      },
+      {
+        "id": 1236489,
+        "name": "Thalassian Spellweaver's Wand",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 40,
+        "skillPoints": 3,
+        "flatChance": 1,
+        "yellowAt": 52,
+        "greenAt": 52,
+        "greyAt": 52,
+        "itemId": 244178
+      },
+      {
+        "id": 1236058,
+        "name": "Enchant Ring - Amani Mastery",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 52,
+        "yellowAt": 53,
+        "greenAt": 53,
+        "greyAt": 53,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "itemId": 243954
+      },
+      {
+        "id": 1236070,
+        "name": "Enchant Helm - Blessing of Speed",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 52,
+        "yellowAt": 53,
+        "greenAt": 53,
+        "greyAt": 53,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "itemId": 243978
+      },
+      {
+        "id": 1236090,
+        "name": "Enchant Shoulders - Thalassian Recovery",
+        "profession": "Enchanting",
+        "concentrationOnly": true,
+        "minSkill": 52,
+        "yellowAt": 53,
+        "greenAt": 53,
+        "greyAt": 53,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "itemId": 244018
+      },
+      {
+        "id": 1236058,
+        "name": "Enchant Ring - Amani Mastery, Enchant Helm - Blessing of Speed, Enchant Shoulders - Thalassian Recovery",
+        "profession": "Enchanting",
+        "once": true,
+        "minSkill": 52,
+        "yellowAt": 55,
+        "greenAt": 55,
+        "greyAt": 55,
+        "skillPoints": 3,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 35
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 6
+          }
+        ],
+        "itemId": 243954
+      },
+      {
+        "id": 1236058,
+        "name": "Enchant Ring - Amani Mastery",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 55,
+        "skillPoints": 1,
+        "flatChance": 0.7777777777777778,
+        "yellowAt": 62,
+        "greenAt": 62,
+        "greyAt": 62,
+        "itemId": 243954
+      },
+      {
+        "id": 1236089,
+        "name": "Enchant Ring - Silvermoon's Tenacity",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 15
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244016
+      },
+      {
+        "id": 1236059,
+        "name": "Enchant Ring - Eyes of the Eagle",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 15
+          },
+          {
+            "itemId": 238522,
+            "name": "Peerless Plumage",
+            "quantity": 2
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243956
+      },
+      {
+        "id": 1236074,
+        "name": "Enchant Ring - Nature's Fury",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 15
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243986
+      },
+      {
+        "id": 1236060,
+        "name": "Enchant Ring - Zul'jin's Mastery",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 15
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243958
+      },
+      {
+        "id": 1236088,
+        "name": "Enchant Ring - Silvermoon's Alacrity",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 15
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244014
+      },
+      {
+        "id": 1236084,
+        "name": "Enchant Helm - Empowered Rune of Avoidance",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 20
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244006
+      },
+      {
+        "id": 1236056,
+        "name": "Enchant Helm - Empowered Hex of Leeching",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 20
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243950
+      },
+      {
+        "id": 1236071,
+        "name": "Enchant Helm - Empowered Blessing of Speed",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 20
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243980
+      },
+      {
+        "id": 1236062,
+        "name": "Enchant Shoulders - Akil'zon's Swiftness",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 20
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243962
+      },
+      {
+        "id": 1236091,
+        "name": "Enchant Shoulders - Silvermoon's Mending",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 20
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244020
+      },
+      {
+        "id": 1236076,
+        "name": "Enchant Shoulders - Amirdrassil's Grace",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 20
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243990
+      },
+      {
+        "id": 1236068,
+        "name": "Enchant Chest - Mark of the Rootwarden",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243974
+      },
+      {
+        "id": 1236069,
+        "name": "Enchant Chest - Mark of the Worldsoul",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 238529,
+            "name": "Majestic Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243976
+      },
+      {
+        "id": 1236082,
+        "name": "Enchant Chest - Mark of the Magister",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 239198,
+            "name": "Arcanoweave Bolt",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244002
+      },
+      {
+        "id": 1236054,
+        "name": "Enchant Chest - Mark of Nalorakk",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 15
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243946
+      },
+      {
+        "id": 1236066,
+        "name": "Enchant Weapon - Jan'alai's Precision",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 5
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 5
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243970
+      },
+      {
+        "id": 1236081,
+        "name": "Enchant Weapon - Worldsoul Tenacity",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242610,
+            "name": "Flawless Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244000
+      },
+      {
+        "id": 1236067,
+        "name": "Enchant Weapon - Berserker's Rage",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242612,
+            "name": "Flawless Amani Lapis",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243972
+      },
+      {
+        "id": 1236097,
+        "name": "Enchant Weapon - Arcane Mastery",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 239198,
+            "name": "Arcanoweave Bolt",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 15
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244030
+      },
+      {
+        "id": 1236094,
+        "name": "Enchant Weapon - Flames of the Sin'dorei",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 239201,
+            "name": "Sunfire Silk Bolt",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 25
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 15
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244026
+      },
+      {
+        "id": 1236065,
+        "name": "Enchant Weapon - Strength of Halazzi",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 5
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243968
+      },
+      {
+        "id": 1236095,
+        "name": "Enchant Weapon - Acuity of the Ren'dorei",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242611,
+            "name": "Flawless Tenebrous Amethyst",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244028
+      },
+      {
+        "id": 1236079,
+        "name": "Enchant Weapon - Worldsoul Cradle",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242610,
+            "name": "Flawless Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243996
+      },
+      {
+        "id": 1236080,
+        "name": "Enchant Weapon - Worldsoul Aegis",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242610,
+            "name": "Flawless Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 62,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243998
+      },
+      {
+        "id": 1236080,
+        "name": "Enchant Weapon - Worldsoul Aegis",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242610,
+            "name": "Flawless Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243998
+      },
+      {
+        "id": 1236094,
+        "name": "Enchant Weapon - Flames of the Sin'dorei",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 239201,
+            "name": "Sunfire Silk Bolt",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 25
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 15
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244026
+      },
+      {
+        "id": 1236065,
+        "name": "Enchant Weapon - Strength of Halazzi",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 5
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 5
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243968
+      },
+      {
+        "id": 1236095,
+        "name": "Enchant Weapon - Acuity of the Ren'dorei",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242611,
+            "name": "Flawless Tenebrous Amethyst",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244028
+      },
+      {
+        "id": 1236079,
+        "name": "Enchant Weapon - Worldsoul Cradle",
+        "profession": "Enchanting",
+        "reagents": [
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 5
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 4
+          },
+          {
+            "itemId": 242610,
+            "name": "Flawless Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 20
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 10
+          },
+          {
+            "itemId": 243605,
+            "name": "Dawn Crystal",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 243996
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 243602,
+        "name": "Radiant Shard",
+        "quantity": 27
+      },
+      {
+        "itemId": 236949,
+        "name": "Mote of Light",
+        "quantity": 6
+      }
+    ]
+  },
+  "Engineering": {
+    "recipes": [
+      {
+        "id": 1229755,
+        "name": "Song Gear",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 253302,
+            "name": "Malleable Wireframe",
+            "quantity": 1
+          },
+          {
+            "itemId": 237359,
+            "name": "Refulgent Copper Ore",
+            "quantity": 10
+          },
+          {
+            "itemId": 237362,
+            "name": "Umbral Tin Ore",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "guideCrafts": 8,
+        "flatChance": 1,
+        "yellowAt": 16,
+        "greenAt": 16,
+        "greyAt": 16,
+        "itemId": 243574
+      },
+      {
+        "id": 1229863,
+        "name": "Evercore Shade",
+        "profession": "Engineering",
+        "concentrationOnly": true,
+        "minSkill": 16,
+        "yellowAt": 17,
+        "greenAt": 17,
+        "greyAt": 17,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "itemId": 244752
+      },
+      {
+        "id": 1229865,
+        "name": "Evercore Vision Guard",
+        "profession": "Engineering",
+        "concentrationOnly": true,
+        "minSkill": 16,
+        "yellowAt": 17,
+        "greenAt": 17,
+        "greyAt": 17,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "itemId": 244754
+      },
+      {
+        "id": 1229863,
+        "name": "Evercore Shade, Evercore Vision Guard",
+        "profession": "Engineering",
+        "once": true,
+        "minSkill": 16,
+        "yellowAt": 18,
+        "greenAt": 18,
+        "greyAt": 18,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          }
+        ],
+        "itemId": 244752
+      },
+      {
+        "id": 1282455,
+        "name": "Evercore Dome Dinger",
+        "profession": "Engineering",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 253303,
+            "name": "Pile of Junk",
+            "quantity": 3
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "itemId": 268475
+      },
+      {
+        "id": 1229862,
+        "name": "Evercore Zoomshroud",
+        "profession": "Engineering",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "itemId": 244751
+      },
+      {
+        "id": 1229864,
+        "name": "Evercore Reconissance",
+        "profession": "Engineering",
+        "concentrationOnly": true,
+        "minSkill": 20,
+        "yellowAt": 21,
+        "greenAt": 21,
+        "greyAt": 21,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "itemId": 244753
+      },
+      {
+        "id": 1282455,
+        "name": "Evercore Dome Dinger, Evercore Zoomshroud, Evercore Reconissance",
+        "profession": "Engineering",
+        "once": true,
+        "minSkill": 20,
+        "yellowAt": 23,
+        "greenAt": 23,
+        "greyAt": 23,
+        "skillPoints": 3,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 253303,
+            "name": "Pile of Junk",
+            "quantity": 3
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 3
+          }
+        ],
+        "itemId": 268475
+      },
+      {
+        "id": 1229853,
+        "name": "Soul Sprocket",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 253302,
+            "name": "Malleable Wireframe",
+            "quantity": 1
+          },
+          {
+            "itemId": 237359,
+            "name": "Refulgent Copper Ore",
+            "quantity": 5
+          },
+          {
+            "itemId": 237362,
+            "name": "Umbral Tin Ore",
+            "quantity": 10
+          }
+        ],
+        "free": false,
+        "minSkill": 25,
+        "skillPoints": 1,
+        "guideCrafts": 10,
+        "flatChance": 1,
+        "yellowAt": 39,
+        "greenAt": 39,
+        "greyAt": 39,
+        "itemId": 243576
+      },
+      {
+        "id": 1229889,
+        "name": "Quel'dorei Guards",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 253303,
+            "name": "Pile of Junk",
+            "quantity": 5
+          },
+          {
+            "itemId": 253302,
+            "name": "Malleable Wireframe",
+            "quantity": 1
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 45,
+        "skillPoints": 1,
+        "flatChance": 0.5833333333333334,
+        "yellowAt": 80,
+        "greenAt": 80,
+        "greyAt": 80,
+        "itemId": 244758
+      },
+      {
+        "id": 1229903,
+        "name": "Turbo-Junker's Multitool",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 3
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244718
+      },
+      {
+        "id": 1229907,
+        "name": "Sin'dorei Snippers",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238528,
+            "name": "Majestic Claw",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244708
+      },
+      {
+        "id": 1229905,
+        "name": "Sin'dorei Clampers",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244714
+      },
+      {
+        "id": 1229894,
+        "name": "Sin'dorei Headlamp",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244710
+      },
+      {
+        "id": 1229897,
+        "name": "Sin'dorei Gilded Hardhat",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238529,
+            "name": "Majestic Hide",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244716
+      },
+      {
+        "id": 1229906,
+        "name": "Junker's Big Ol' Bag",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238529,
+            "name": "Majestic Hide",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244720
+      },
+      {
+        "id": 1229902,
+        "name": "Sin'dorei Angler's Rod",
+        "profession": "Engineering",
+        "reagents": [
+          {
+            "itemId": 243578,
+            "name": "Aetherlume",
+            "quantity": 4
+          },
+          {
+            "itemId": 243581,
+            "name": "Evercore",
+            "quantity": 2
+          },
+          {
+            "itemId": 238530,
+            "name": "Majestic Fin",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 80,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 244712
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 237359,
+        "name": "Refulgent Copper Ore",
+        "quantity": 145
+      },
+      {
+        "itemId": 237362,
+        "name": "Umbral Tin Ore",
+        "quantity": 155
+      },
+      {
+        "itemId": 236949,
+        "name": "Mote of Light",
+        "quantity": 1
+      },
+      {
+        "itemId": 236950,
+        "name": "Mote of Primal Energy",
+        "quantity": 1
+      },
+      {
+        "itemId": 236951,
+        "name": "Mote of Wild Magic",
+        "quantity": 1
+      },
+      {
+        "itemId": 236952,
+        "name": "Mote of Pure Void",
+        "quantity": 1
+      },
+      {
+        "itemId": 253302,
+        "name": "Malleable Wireframe",
+        "quantity": 21
+      },
+      {
+        "itemId": 253303,
+        "name": "Pile of Junk",
+        "quantity": 35
+      }
+    ]
+  },
+  "Inscription": {
+    "recipes": [
+      {
+        "id": 1230017,
+        "name": "Munsell Ink",
+        "profession": "Inscription",
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 3
+          },
+          {
+            "itemId": 0,
+            "name": "Powder Pigment",
+            "quantity": 20
+          },
+          {
+            "itemId": 0,
+            "name": "Sanguithorn Pigment",
+            "quantity": 10
+          },
+          {
+            "itemId": 0,
+            "name": "Mana Lily Pigment",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 20,
+        "skillPoints": 1,
+        "flatChance": 0.9090909090909091,
+        "yellowAt": 30,
+        "greenAt": 30,
+        "greyAt": 30,
+        "itemId": 245801
+      },
+      {
+        "id": 1230016,
+        "name": "Sienna Ink",
+        "profession": "Inscription",
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 3
+          },
+          {
+            "itemId": 0,
+            "name": "Powder Pigment",
+            "quantity": 20
+          },
+          {
+            "itemId": 0,
+            "name": "Argentleaf Pigment",
+            "quantity": 10
+          },
+          {
+            "itemId": 0,
+            "name": "Mana Lily Pigment",
+            "quantity": 5
+          }
+        ],
+        "free": false,
+        "minSkill": 20,
+        "skillPoints": 1,
+        "flatChance": 0.8333333333333334,
+        "yellowAt": 30,
+        "greenAt": 30,
+        "greyAt": 30,
+        "itemId": 245805
+      },
+      {
+        "id": 1230055,
+        "name": "Faunatender's Baton",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 30,
+        "yellowAt": 31,
+        "greenAt": 31,
+        "greyAt": 31,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 1
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          }
+        ],
+        "itemId": 245773
+      },
+      {
+        "id": 1230056,
+        "name": "Floratender's Crutch",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 30,
+        "yellowAt": 31,
+        "greenAt": 31,
+        "greyAt": 31,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 1
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          }
+        ],
+        "itemId": 245772
+      },
+      {
+        "id": 1230057,
+        "name": "Rootwarden's Lamp",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 30,
+        "yellowAt": 31,
+        "greenAt": 31,
+        "greyAt": 31,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 1
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          }
+        ],
+        "itemId": 245768
+      },
+      {
+        "id": 1230019,
+        "name": "Soul Cipher",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 30,
+        "yellowAt": 31,
+        "greenAt": 31,
+        "greyAt": 31,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          },
+          {
+            "itemId": 242788,
+            "name": "Duskshrouded Stone",
+            "quantity": 1
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245766
+      },
+      {
+        "id": 1230055,
+        "name": "Faunatender's Baton, Floratender's Crutch, Rootwarden's Lamp, Soul Cipher",
+        "profession": "Inscription",
+        "once": true,
+        "minSkill": 30,
+        "yellowAt": 34,
+        "greenAt": 34,
+        "greyAt": 34,
+        "skillPoints": 4,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245882,
+            "name": "Thalassian Songwater",
+            "quantity": 3
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 24
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 1
+          },
+          {
+            "itemId": 242788,
+            "name": "Duskshrouded Stone",
+            "quantity": 1
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245773
+      },
+      {
+        "id": 1230018,
+        "name": "Codified Azeroot",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245766,
+            "name": "Soul Cipher",
+            "quantity": 1
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 1
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245764
+      },
+      {
+        "id": 1230058,
+        "name": "Faunatender's Trust",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 8
+          }
+        ],
+        "itemId": 265336
+      },
+      {
+        "id": 1230021,
+        "name": "Hobbyist Alchemist's Mixing Rod",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 10
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245777
+      },
+      {
+        "id": 1230020,
+        "name": "Hobbyist Rolling Pin",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 10
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245779
+      },
+      {
+        "id": 1230022,
+        "name": "Hobbyist Scribe's Quill",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 5
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245775
+      },
+      {
+        "id": 1230042,
+        "name": "Thalassian Missive of the Aurora",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245781
+      },
+      {
+        "id": 1230041,
+        "name": "Thalassian Missive of the Feverflare",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245783
+      },
+      {
+        "id": 1230040,
+        "name": "Thalassian Missive of the Fireflash",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245785
+      },
+      {
+        "id": 1230039,
+        "name": "Thalassian Missive of the Harmonious",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 35,
+        "yellowAt": 36,
+        "greenAt": 36,
+        "greyAt": 36,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245787
+      },
+      {
+        "id": 1230018,
+        "name": "Codified Azeroot, Faunatender's Trust, Hobbyist Alchemist's Mixing Rod, Hobbyist Rolling Pin, Hobbyist Scribe's Quill, Thalassian Missive of the Aurora, Thalassian Missive of the Feverflare, Thalassian Missive of the Fireflash, Thalassian Missive of the Harmonious",
+        "profession": "Inscription",
+        "once": true,
+        "minSkill": 35,
+        "yellowAt": 44,
+        "greenAt": 44,
+        "greyAt": 44,
+        "skillPoints": 9,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245766,
+            "name": "Soul Cipher",
+            "quantity": 1
+          },
+          {
+            "itemId": 236774,
+            "name": "Azeroot",
+            "quantity": 41
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 4
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 11
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 9
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245764
+      },
+      {
+        "id": 1230032,
+        "name": "Thalassian Treatise on Inscription",
+        "profession": "Inscription",
+        "reagents": [
+          {
+            "itemId": 245881,
+            "name": "Lexicologist's Vellum",
+            "quantity": 3
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 1
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 42,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "yellowAt": 45,
+        "greenAt": 45,
+        "greyAt": 45,
+        "itemId": 245757
+      },
+      {
+        "id": 1230038,
+        "name": "Thalassian Missive of the Peerless",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 45,
+        "yellowAt": 46,
+        "greenAt": 46,
+        "greyAt": 46,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245789
+      },
+      {
+        "id": 1230037,
+        "name": "Thalassian Missive of the Quickblade",
+        "profession": "Inscription",
+        "concentrationOnly": true,
+        "minSkill": 45,
+        "yellowAt": 46,
+        "greenAt": 46,
+        "greyAt": 46,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 2
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          }
+        ],
+        "itemId": 245791
+      },
+      {
+        "id": 1230038,
+        "name": "Thalassian Missive of the Peerless, Thalassian Missive of the Quickblade",
+        "profession": "Inscription",
+        "once": true,
+        "minSkill": 45,
+        "yellowAt": 47,
+        "greenAt": 47,
+        "greyAt": 47,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 4
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 4
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 2
+          }
+        ],
+        "itemId": 245789
+      },
+      {
+        "id": 1230032,
+        "name": "Thalassian Treatise on Inscription",
+        "profession": "Inscription",
+        "reagents": [
+          {
+            "itemId": 245881,
+            "name": "Lexicologist's Vellum",
+            "quantity": 3
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 1
+          },
+          {
+            "itemId": 245801,
+            "name": "Munsell Ink",
+            "quantity": 1
+          },
+          {
+            "itemId": 245805,
+            "name": "Sienna Ink",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 47,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "yellowAt": 50,
+        "greenAt": 50,
+        "greyAt": 50,
+        "itemId": 245757
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 236761,
+        "name": "Tranquility Bloom",
+        "quantity": 360
+      },
+      {
+        "itemId": 236776,
+        "name": "Argentleaf",
+        "quantity": 100
+      },
+      {
+        "itemId": 236778,
+        "name": "Mana Lily",
+        "quantity": 90
+      },
+      {
+        "itemId": 236770,
+        "name": "Sanguithorn",
+        "quantity": 90
+      },
+      {
+        "itemId": 236774,
+        "name": "Azeroot",
+        "quantity": 65
+      },
+      {
+        "itemId": 242788,
+        "name": "Duskshrouded Stone",
+        "quantity": 1
+      },
+      {
+        "itemId": 236950,
+        "name": "Mote of Primal Energy",
+        "quantity": 4
+      },
+      {
+        "itemId": 236952,
+        "name": "Mote of Pure Void",
+        "quantity": 4
+      },
+      {
+        "itemId": 236949,
+        "name": "Mote of Light",
+        "quantity": 1
+      },
+      {
+        "itemId": 236951,
+        "name": "Mote of Wild Magic",
+        "quantity": 7
+      }
+    ]
+  },
+  "Jewelcrafting": {
+    "recipes": [
+      {
+        "id": 1230475,
+        "name": "Sin'dorei Lens",
+        "profession": "Jewelcrafting",
+        "reagents": [
+          {
+            "itemId": 242620,
+            "name": "Glimmering Gemdust",
+            "quantity": 1
+          },
+          {
+            "itemId": 242786,
+            "name": "Crystalline Glass",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "guideCrafts": 4,
+        "flatChance": 1,
+        "yellowAt": 14,
+        "greenAt": 14,
+        "greyAt": 14,
+        "itemId": 240972
+      },
+      {
+        "id": 1230499,
+        "name": "Monologuer's Chalice",
+        "profession": "Jewelcrafting",
+        "reagents": [
+          {
+            "itemId": 242786,
+            "name": "Crystalline Glass",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "skillPoints": 1,
+        "flatChance": 0.375,
+        "yellowAt": 65,
+        "greenAt": 65,
+        "greyAt": 65,
+        "itemId": 241141
+      },
+      {
+        "id": 1230477,
+        "name": "Prismatic Focusing Iris",
+        "profession": "Jewelcrafting",
+        "reagents": [
+          {
+            "itemId": 240972,
+            "name": "Sin'dorei Lens",
+            "quantity": 2
+          },
+          {
+            "itemId": 242620,
+            "name": "Glimmering Gemdust",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 65,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 251487
+      },
+      {
+        "id": 1230478,
+        "name": "Stabilizing Gemstone Bandolier",
+        "profession": "Jewelcrafting",
+        "reagents": [
+          {
+            "itemId": 242553,
+            "name": "Sanguine Garnet",
+            "quantity": 1
+          },
+          {
+            "itemId": 242554,
+            "name": "Amani Lapis",
+            "quantity": 1
+          },
+          {
+            "itemId": 242606,
+            "name": "Tenebrous Amethyst",
+            "quantity": 1
+          },
+          {
+            "itemId": 242607,
+            "name": "Harandar Peridot",
+            "quantity": 1
+          },
+          {
+            "itemId": 242620,
+            "name": "Glimmering Gemdust",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 65,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "assumed": true,
+        "itemId": 251489
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 237359,
+        "name": "Refulgent Copper Ore",
+        "quantity": 5
+      },
+      {
+        "itemId": 237362,
+        "name": "Umbral Tin Ore",
+        "quantity": 5
+      },
+      {
+        "itemId": 242620,
+        "name": "Glimmering Gemdust",
+        "quantity": 31
+      },
+      {
+        "itemId": 242786,
+        "name": "Crystalline Glass",
+        "quantity": 100
+      },
+      {
+        "itemId": 242788,
+        "name": "Duskshrouded Stone",
+        "quantity": 7
+      },
+      {
+        "itemId": 242553,
+        "name": "Sanguine Garnet",
+        "quantity": 5
+      }
+    ]
+  },
+  "Leatherworking": {
+    "recipes": [
+      {
+        "id": 0,
+        "name": "First-craft every trainer recipe",
+        "profession": "Leatherworking",
+        "once": true,
+        "minSkill": 1,
+        "yellowAt": 60,
+        "greenAt": 60,
+        "greyAt": 60,
+        "skillPoints": 59,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 238511,
+            "name": "Void-Tempered Leather",
+            "quantity": 690
+          },
+          {
+            "itemId": 238513,
+            "name": "Void-Tempered Scales",
+            "quantity": 610
+          },
+          {
+            "itemId": 238518,
+            "name": "Void-Tempered Hide",
+            "quantity": 3
+          },
+          {
+            "itemId": 238520,
+            "name": "Void-Tempered Plating",
+            "quantity": 2
+          },
+          {
+            "itemId": 238522,
+            "name": "Peerless Plumage",
+            "quantity": 4
+          },
+          {
+            "itemId": 238523,
+            "name": "Carving Canine",
+            "quantity": 3
+          },
+          {
+            "itemId": 238525,
+            "name": "Fantastic Fur",
+            "quantity": 4
+          },
+          {
+            "itemId": 236761,
+            "name": "Tranquility Bloom",
+            "quantity": 10
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 4
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 1
+          },
+          {
+            "itemId": 251665,
+            "name": "Silverleaf Thread",
+            "quantity": 75
+          }
+        ]
+      },
+      {
+        "id": 1237577,
+        "name": "Blessed Pango Charm",
+        "profession": "Leatherworking",
+        "reagents": [
+          {
+            "itemId": 242788,
+            "name": "Duskshrouded Stone",
+            "quantity": 2
+          },
+          {
+            "itemId": 238518,
+            "name": "Void-Tempered Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 10
+          },
+          {
+            "itemId": 238523,
+            "name": "Carving Canine",
+            "quantity": 1
+          },
+          {
+            "itemId": 238522,
+            "name": "Peerless Plumage",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 60,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 244603
+      },
+      {
+        "id": 1237578,
+        "name": "Primal Spore Binding",
+        "profession": "Leatherworking",
+        "reagents": [
+          {
+            "itemId": 244631,
+            "name": "Scalewoven Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 236950,
+            "name": "Mote of Primal Energy",
+            "quantity": 10
+          },
+          {
+            "itemId": 238525,
+            "name": "Fantastic Fur",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 60,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 244607
+      },
+      {
+        "id": 1237545,
+        "name": "Blood Knight's Armor Kit",
+        "profession": "Leatherworking",
+        "reagents": [
+          {
+            "itemId": 244633,
+            "name": "Infused Scalewoven Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 244635,
+            "name": "Sin'dorei Armor Banding",
+            "quantity": 2
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 3
+          },
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 10
+          }
+        ],
+        "free": false,
+        "minSkill": 60,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 244642
+      },
+      {
+        "id": 1237544,
+        "name": "Forest Hunter's Armor Kit",
+        "profession": "Leatherworking",
+        "reagents": [
+          {
+            "itemId": 244633,
+            "name": "Infused Scalewoven Hide",
+            "quantity": 1
+          },
+          {
+            "itemId": 244635,
+            "name": "Sin'dorei Armor Banding",
+            "quantity": 2
+          },
+          {
+            "itemId": 251285,
+            "name": "Petrified Root",
+            "quantity": 3
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 10
+          }
+        ],
+        "free": false,
+        "minSkill": 60,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 244640
+      },
+      {
+        "id": 1237579,
+        "name": "Devouring Banding",
+        "profession": "Leatherworking",
+        "reagents": [
+          {
+            "itemId": 244635,
+            "name": "Sin'dorei Armor Banding",
+            "quantity": 1
+          },
+          {
+            "itemId": 236952,
+            "name": "Mote of Pure Void",
+            "quantity": 10
+          }
+        ],
+        "free": false,
+        "minSkill": 60,
+        "yellowAt": 80,
+        "greenAt": 90,
+        "greyAt": 100,
+        "skillPoints": 1,
+        "itemId": 244674
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 238511,
+        "name": "Void-Tempered Leather",
+        "quantity": 690
+      },
+      {
+        "itemId": 238513,
+        "name": "Void-Tempered Scales",
+        "quantity": 610
+      },
+      {
+        "itemId": 238518,
+        "name": "Void-Tempered Hide",
+        "quantity": 3
+      },
+      {
+        "itemId": 238520,
+        "name": "Void-Tempered Plating",
+        "quantity": 2
+      },
+      {
+        "itemId": 238522,
+        "name": "Peerless Plumage",
+        "quantity": 4
+      },
+      {
+        "itemId": 238523,
+        "name": "Carving Canine",
+        "quantity": 3
+      },
+      {
+        "itemId": 238525,
+        "name": "Fantastic Fur",
+        "quantity": 4
+      },
+      {
+        "itemId": 236761,
+        "name": "Tranquility Bloom",
+        "quantity": 10
+      },
+      {
+        "itemId": 236949,
+        "name": "Mote of Light",
+        "quantity": 4
+      },
+      {
+        "itemId": 236952,
+        "name": "Mote of Pure Void",
+        "quantity": 1
+      },
+      {
+        "itemId": 251665,
+        "name": "Silverleaf Thread",
+        "quantity": 75
+      }
+    ]
+  },
+  "Tailoring": {
+    "recipes": [
+      {
+        "id": 1228939,
+        "name": "Bright Linen Bolt",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 236963,
+            "name": "Bright Linen",
+            "quantity": 1
+          }
+        ],
+        "free": false,
+        "minSkill": 1,
+        "skillPoints": 1,
+        "flatChance": 0.36363636363636365,
+        "yellowAt": 25,
+        "greenAt": 25,
+        "greyAt": 25,
+        "itemId": 239700
+      },
+      {
+        "id": 1228940,
+        "name": "Imbued Bright Linen Bolt",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 239700,
+            "name": "Bright Linen Bolt",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 25,
+        "skillPoints": 1,
+        "guideCrafts": 14,
+        "flatChance": 1,
+        "yellowAt": 40,
+        "greenAt": 40,
+        "greyAt": 40,
+        "itemId": 239702
+      },
+      {
+        "id": 1228959,
+        "name": "Courtly Shoulders",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 239700,
+            "name": "Bright Linen Bolt",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 44,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "yellowAt": 50,
+        "greenAt": 50,
+        "greyAt": 50,
+        "itemId": 239675
+      },
+      {
+        "id": 1228060,
+        "name": "Sunfire Silk Bolt",
+        "profession": "Tailoring",
+        "concentrationOnly": true,
+        "minSkill": 50,
+        "yellowAt": 51,
+        "greenAt": 51,
+        "greyAt": 51,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 4
+          },
+          {
+            "itemId": 237015,
+            "name": "Sunfire Silk",
+            "quantity": 5
+          },
+          {
+            "itemId": 239702,
+            "name": "Imbued Bright Linen Bolt",
+            "quantity": 6
+          }
+        ],
+        "itemId": 239201
+      },
+      {
+        "id": 1227926,
+        "name": "Arcanoweave Bolt",
+        "profession": "Tailoring",
+        "concentrationOnly": true,
+        "minSkill": 50,
+        "yellowAt": 51,
+        "greenAt": 51,
+        "greyAt": 51,
+        "skillPoints": 1,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 4
+          },
+          {
+            "itemId": 237018,
+            "name": "Arcanoweave",
+            "quantity": 5
+          },
+          {
+            "itemId": 239702,
+            "name": "Imbued Bright Linen Bolt",
+            "quantity": 6
+          }
+        ],
+        "itemId": 239198
+      },
+      {
+        "id": 1228060,
+        "name": "Sunfire Silk Bolt, Arcanoweave Bolt",
+        "profession": "Tailoring",
+        "once": true,
+        "minSkill": 50,
+        "yellowAt": 52,
+        "greenAt": 52,
+        "greyAt": 52,
+        "skillPoints": 2,
+        "flatChance": 1,
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 4
+          },
+          {
+            "itemId": 237015,
+            "name": "Sunfire Silk",
+            "quantity": 5
+          },
+          {
+            "itemId": 239702,
+            "name": "Imbued Bright Linen Bolt",
+            "quantity": 12
+          },
+          {
+            "itemId": 236951,
+            "name": "Mote of Wild Magic",
+            "quantity": 4
+          },
+          {
+            "itemId": 237018,
+            "name": "Arcanoweave",
+            "quantity": 5
+          }
+        ],
+        "itemId": 239201
+      },
+      {
+        "id": 1228976,
+        "name": "Bright Linen Spellthread",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 239702,
+            "name": "Imbued Bright Linen Bolt",
+            "quantity": 2
+          },
+          {
+            "itemId": 243599,
+            "name": "Eversinging Dust",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 50,
+        "skillPoints": 1,
+        "flatChance": 0.5,
+        "yellowAt": 65,
+        "greenAt": 65,
+        "greyAt": 65,
+        "itemId": 240156
+      },
+      {
+        "id": 1228960,
+        "name": "Sunfire Silk Lining",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 237015,
+            "name": "Sunfire Silk",
+            "quantity": 6
+          },
+          {
+            "itemId": 239198,
+            "name": "Arcanoweave Bolt",
+            "quantity": 2
+          }
+        ],
+        "free": false,
+        "minSkill": 65,
+        "skillPoints": 1,
+        "flatChance": 0.8928571428571429,
+        "yellowAt": 90,
+        "greenAt": 90,
+        "greyAt": 90,
+        "itemId": 240164
+      },
+      {
+        "id": 1228963,
+        "name": "Elegant Artisan's Cooking Hat",
+        "profession": "Tailoring",
+        "reagents": [
+          {
+            "itemId": 236949,
+            "name": "Mote of Light",
+            "quantity": 5
+          },
+          {
+            "itemId": 239201,
+            "name": "Sunfire Silk Bolt",
+            "quantity": 8
+          },
+          {
+            "itemId": 243602,
+            "name": "Radiant Shard",
+            "quantity": 3
+          }
+        ],
+        "free": false,
+        "minSkill": 90,
+        "skillPoints": 1,
+        "flatChance": 0.7692307692307693,
+        "yellowAt": 100,
+        "greenAt": 100,
+        "greyAt": 100,
+        "itemId": 239636
+      }
+    ],
+    "shopping": [
+      {
+        "itemId": 236963,
+        "name": "Bright Linen",
+        "quantity": 66
+      },
+      {
+        "itemId": 243599,
+        "name": "Eversinging Dust",
+        "quantity": 14
+      }
+    ]
+  }
+}
