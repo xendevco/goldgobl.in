@@ -18,6 +18,8 @@ export type DecorItem = {
 
 export const decorItems = decorJson as DecorItem[];
 
+export const THALASSIAN_LUMBER_ID = 256963;
+
 export function decorReagentIds(items: DecorItem[] = decorItems): number[] {
   const ids = new Set<number>();
   for (const item of items) {

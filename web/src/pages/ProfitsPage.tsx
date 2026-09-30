@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RealmPicker } from "@/components/RealmPicker";
 import { SortableTable } from "@/components/SortableTable";
-import { decorItems, decorReagentIds } from "@/data/decor";
+import { THALASSIAN_LUMBER_ID, decorItems, decorReagentIds } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
 import { getRealms } from "@/lib/api";
 import { formatCopper, formatPercent } from "@/lib/format";
-import { expectedNet, partialReagentCost } from "@/lib/yield";
+import { expectedNet, expectedReagentCost, expectedRevenue, partialReagentCost } from "@/lib/yield";
 import { useRoster } from "@/stores/roster";
 import type { Realm } from "@/types/api";
 
@@ -34,6 +34,7 @@ export function ProfitsPage() {
   const setCraftStat = useRoster((state) => state.setCraftStat);
   const setHomeRealmId = useRoster((state) => state.setHomeRealmId);
   const [realms, setRealms] = useState<Realm[]>([]);
+  const [lumberGold, setLumberGold] = useState(0);
   const homeRealm = realms.find((realm) => realm.id === settings.homeRealmId);
   const reagentPrices = usePrices(decorReagentIds());
   const marketPrices = usePrices(
@@ -66,24 +67,31 @@ export function ProfitsPage() {
   }, [realms, setHomeRealmId, settings.homeRealmId]);
 
   const rows = decorItems.map((item) => {
+    const bought = item.reagents.filter((reagent) => reagent.itemId !== THALASSIAN_LUMBER_ID);
+    const lumberQty = item.reagents.find((reagent) => reagent.itemId === THALASSIAN_LUMBER_ID)?.quantity ?? 0;
     const materials = partialReagentCost(
-      item.reagents,
-      new Map(item.reagents.map((reagent) => [reagent.itemId, reagentPrices.quotes[reagent.itemId]?.marketValue ?? null])),
+      bought,
+      new Map(bought.map((reagent) => [reagent.itemId, reagentPrices.quotes[reagent.itemId]?.marketValue ?? null])),
     );
     const sell = marketPrices.quotes[item.itemId]?.marketValue ?? null;
     const saleRate = marketPrices.quotes[item.itemId]?.saleRate ?? null;
+    const yieldInput = {
+      sellPrice: sell ?? 0,
+      saleRate: saleRate ?? 0,
+      multicraftChance: settings.multicraftChance,
+      resourcefulnessChance: settings.resourcefulnessChance,
+      ingenuityChance: settings.ingenuityChance,
+    };
+    const lumberCost = lumberQty * lumberGold * 10000;
     const net =
-      sell == null
+      sell == null || saleRate == null
         ? null
-        : expectedNet({
-            reagentCost: materials.total,
-            sellPrice: sell,
-            saleRate: saleRate ?? 1,
-            multicraftChance: settings.multicraftChance,
-            resourcefulnessChance: settings.resourcefulnessChance,
-            ingenuityChance: settings.ingenuityChance,
-          });
-    return { item, cost: materials.total, missing: materials.missing, sell, saleRate, net };
+        : expectedNet({ ...yieldInput, reagentCost: materials.total + lumberCost });
+    const perLog =
+      sell == null || saleRate == null || lumberQty === 0
+        ? null
+        : (expectedRevenue(yieldInput) - expectedReagentCost({ reagentCost: materials.total, ...yieldInput })) / lumberQty;
+    return { item, cost: materials.total + lumberCost, missing: materials.missing, sell, saleRate, net, perLog, lumberQty };
   });
   const loading = reagentPrices.loading || marketPrices.loading;
   const error = reagentPrices.error ?? marketPrices.error;
@@ -94,7 +102,7 @@ export function ProfitsPage() {
         <div>
           <h1 className="text-lg font-semibold">Crafting profitability</h1>
           <p className="text-muted-foreground text-xs">
-            Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Thalassian Lumber is warbound, so it is left out of the cost. Sale rate is the TradeSkillMaster region rate, and expected net assumes a sale when that rate is missing.
+            {decorItems.length} Midnight profession crafts. Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Per log is the expected gold from one Thalassian Lumber after bought reagents, the sale rate, and the auction house cut.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -117,12 +125,24 @@ export function ProfitsPage() {
         {percentField("Multicraft %", settings.multicraftChance, (value) => setCraftStat("multicraftChance", value))}
         {percentField("Resourcefulness %", settings.resourcefulnessChance, (value) => setCraftStat("resourcefulnessChance", value))}
         {percentField("Ingenuity %", settings.ingenuityChance, (value) => setCraftStat("ingenuityChance", value))}
+        <label className="text-muted-foreground flex items-center gap-2 text-xs">
+          Lumber value (g)
+          <Input
+            aria-label="Lumber value (g)"
+            className="h-8 w-20"
+            type="number"
+            min={0}
+            step="0.1"
+            value={lumberGold}
+            onChange={(event) => setLumberGold(Number(event.target.value))}
+          />
+        </label>
       </div>
       {error ? <p className="text-destructive text-xs">{error}</p> : null}
       <div className="border-border overflow-hidden rounded-md border">
         <SortableTable
           rows={rows}
-          initialKey="net"
+          initialKey="perLog"
           initialDirection="desc"
           rowKey={(row) => String(row.item.itemId)}
           columns={[
@@ -158,8 +178,15 @@ export function ProfitsPage() {
               key: "net",
               header: "Expected net",
               align: "right",
-              sortValue: (row) => row.net ?? -1,
+              sortValue: (row) => row.net ?? Number.NEGATIVE_INFINITY,
               cell: (row) => <Net net={row.net} />,
+            },
+            {
+              key: "perLog",
+              header: "Per log",
+              align: "right",
+              sortValue: (row) => row.perLog ?? Number.NEGATIVE_INFINITY,
+              cell: (row) => <Net net={row.perLog} />,
             },
           ]}
         />

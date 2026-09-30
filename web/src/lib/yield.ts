@@ -24,13 +24,12 @@ export function expectedReagentCost(input: Pick<CraftYieldInput, "reagentCost" |
   return input.reagentCost * afterResourcefulness * afterIngenuity;
 }
 
+export function expectedRevenue(input: Omit<CraftYieldInput, "reagentCost">): number {
+  return input.sellPrice * input.saleRate * expectedYield(input.multicraftChance) * (1 - yieldCoefficients.auctionHouseCut);
+}
+
 export function expectedNet(input: CraftYieldInput): number {
-  const revenue =
-    input.sellPrice *
-    input.saleRate *
-    expectedYield(input.multicraftChance) *
-    (1 - yieldCoefficients.auctionHouseCut);
-  return revenue - expectedReagentCost(input);
+  return expectedRevenue(input) - expectedReagentCost(input);
 }
 
 export function reagentCost(

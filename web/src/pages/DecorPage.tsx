@@ -24,7 +24,7 @@ export function DecorPage() {
         <div>
           <h1 className="text-lg font-semibold">Midnight decor hub</h1>
           <p className="text-muted-foreground text-xs">
-            Pricing {reagentIds.length} reagents. Thalassian Lumber is warbound and is left out of the cost.
+            Pricing {reagentIds.length} reagents across {decorItems.length} Midnight profession crafts. Thalassian Lumber is warbound and is left out of the cost.
           </p>
         </div>
         <div className="flex items-center gap-2">

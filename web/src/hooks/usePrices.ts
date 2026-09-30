@@ -17,11 +17,15 @@ export function usePrices(itemIds: number[], connectedRealmId?: number | null) {
     setLoading(true);
     setError(null);
     try {
-      const result = await getPrices({ region, itemIds: ids, connectedRealmId });
       const next: Record<number, PriceQuote> = {};
-      for (const quote of result.quotes) next[quote.itemId] = quote;
+      let stale = false;
+      for (let index = 0; index < ids.length; index += 150) {
+        const result = await getPrices({ region, itemIds: ids.slice(index, index + 150), connectedRealmId });
+        for (const quote of result.quotes) next[quote.itemId] = quote;
+        stale = stale || result.stale;
+      }
       setQuotes(next);
-      setStale(result.stale);
+      setStale(stale);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Price request failed");
     } finally {

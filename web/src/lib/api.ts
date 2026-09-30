@@ -61,7 +61,7 @@ export async function getPrices(options: {
     const cached = itemIds
       .map((itemId) => readCachedQuote(options.region, itemId, realmId))
       .filter((quote): quote is NonNullable<typeof quote> => quote != null);
-    if ((status === 429 || status === 0) && cached.length > 0) {
+    if ((status === 429 || status === 0) && cached.length === itemIds.length) {
       return {
         quotes: cached.map(({ cachedAt: _cachedAt, ...quote }) => quote),
         stale: true,
