@@ -338,23 +338,56 @@ async function liveQuotes(env, region, itemIds, connectedRealmId) {
   return { quotes, status: 200 };
 }
 
-async function liveRealms(env, region) {
-  if (missingSecrets(env)) return { error: "upstream_not_configured", status: 503, realms: [] };
+function localisedName(value) {
+  if (typeof value === "string") return value;
+  if (!value || typeof value !== "object") return "";
+  return value.en_GB || value.en_US || Object.values(value).find((entry) => typeof entry === "string") || "";
+}
+
+function connectedRealmName(document) {
+  const realms = document?.realms || [];
+  const names = realms.map((realm) => localisedName(realm?.name)).filter(Boolean);
+  return [...new Set(names)].join(", ");
+}
+
+async function searchConnectedRealms(env, region) {
   const host = REGIONS[region];
   const token = await blizzardToken(env, region);
-  const url = new URL("/data/wow/connected-realm/index", host.api);
-  url.searchParams.set("namespace", host.namespace);
-  url.searchParams.set("locale", host.locale);
-  const response = await fetch(url, { headers: { authorization: `Bearer ${token}` } });
-  if (!response.ok) throw new Error("realms_failed");
-  const payload = await readBoundedJson(response);
   const realms = [];
-  for (const entry of payload.connected_realms || []) {
-    const match = String(entry.href || "").match(/connected-realm\/(\d+)/);
-    if (!match) continue;
-    const id = Number(match[1]);
-    realms.push({ id, name: `Connected realm ${id}`, region });
+  for (let page = 1; page <= 10; page += 1) {
+    const url = new URL("/data/wow/search/connected-realm", host.api);
+    url.searchParams.set("namespace", host.namespace);
+    url.searchParams.set("locale", host.locale);
+    url.searchParams.set("orderby", "id");
+    url.searchParams.set("_pageSize", "100");
+    url.searchParams.set("_page", String(page));
+    const response = await fetch(url, { headers: { authorization: `Bearer ${token}` } });
+    if (!response.ok) throw new Error("realms_failed");
+    const payload = await readBoundedJson(response);
+    const results = Array.isArray(payload.results) ? payload.results : [];
+    for (const result of results) {
+      const data = result?.data || {};
+      const id = Number(data.id);
+      if (!id) continue;
+      realms.push({ id, name: connectedRealmName(data) || `Connected realm ${id}`, region });
+    }
+    const pageCount = Number(payload.pageCount) || 1;
+    if (page >= pageCount || results.length === 0) break;
   }
+  return realms.sort((left, right) => left.name.localeCompare(right.name) || left.id - right.id);
+}
+
+async function liveRealms(env, region) {
+  if (missingSecrets(env)) return { error: "upstream_not_configured", status: 503, realms: [] };
+  const cacheKey = new Request(`https://goldgoblin-cache.internal/realms/${region}`);
+  const cached = await caches.default.match(cacheKey);
+  if (cached) return { realms: await cached.json(), status: 200 };
+  const realms = await searchConnectedRealms(env, region);
+  if (realms.length === 0) return { error: "realms_failed", status: 502, realms: [] };
+  await caches.default.put(
+    cacheKey,
+    new Response(JSON.stringify(realms), { headers: { "cache-control": "max-age=43200" } }),
+  );
   return { realms, status: 200 };
 }
 

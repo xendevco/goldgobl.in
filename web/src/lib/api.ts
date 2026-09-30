@@ -2,7 +2,10 @@ import { isFresh, readCachedQuote, writeCachedQuotes } from "@/lib/cache";
 import type { HealthResponse, PriceQuote, PriceResponse, Realm } from "@/types/api";
 import type { Region } from "@/types/character";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? "/api" : "https://api.goldgobl.in");
+// NordVPN's resolvers still answer NXDOMAIN for api.goldgobl.in. The workers.dev host resolves and serves the same worker.
+const API_BASE =
+  import.meta.env.VITE_API_BASE ??
+  (import.meta.env.DEV ? "/api" : "https://goldgoblin-api.xbramford-cloudflare.workers.dev");
 
 export class ApiError extends Error {
   status: number;
