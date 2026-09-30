@@ -8,8 +8,8 @@ workers_dev = true
 # Production stays on live upstreams. Do not commit secrets.
 # wrangler secret put BLIZZARD_CLIENT_ID
 # wrangler secret put BLIZZARD_CLIENT_SECRET
-# wrangler secret put TSM_API_KEY
-# wrangler secret put TSM_API_BASE
+# Sale rates come from the public TSM CSV and need no secret.
+# https://public-data.tradeskillmaster.com/retail/{region}/region/items.csv
 # wrangler secret put JWT_SECRET
 
 [vars]

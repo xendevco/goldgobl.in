@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import worker, { authorise, fixtureQuote, rateLimit, reduceAuctions } from "./worker.js";
+import worker, { authorise, fixtureQuote, parseTsmSaleRates, rateLimit, reduceAuctions } from "./worker.js";
 
 test("authorise stays on the free tier when no JWT secret is configured", async () => {
   const result = await authorise(new Request("https://api.goldgobl.in/health"), {});
@@ -80,6 +80,19 @@ test("realm prices diverge so arbitrage has a spread", () => {
   const home = fixtureQuote(262601, 101);
   const remote = fixtureQuote(262601, 102);
   assert.notEqual(home.marketValue, remote.marketValue);
+});
+
+test("parseTsmSaleRates reads the public region CSV", () => {
+  const csv = [
+    "itemId,name,marketValue,historical,avgSalePrice,saleRate,soldPerDay,updatedAt",
+    '262601,Wild Hanging Scroll,89927300,124848750,37999905,0.022,0.11,2026-09-30T00:33:37Z',
+    '3042,"BKP ""Sparrow"" Smallbore",2712401,2634800,479038,0.036,0.036,2026-09-30T00:33:37Z',
+    "256963,Thalassian Lumber,1,1,1,not-a-rate,0,2026-09-30T00:33:37Z",
+  ].join("\n");
+  const rates = parseTsmSaleRates(csv);
+  assert.equal(rates[262601], 0.022);
+  assert.equal(rates[3042], 0.036);
+  assert.equal(rates[256963], undefined);
 });
 
 test("reduceAuctions keeps the cheapest unit price", () => {

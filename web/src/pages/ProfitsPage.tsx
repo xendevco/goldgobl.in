@@ -7,7 +7,7 @@ import { SortableTable } from "@/components/SortableTable";
 import { decorItems, decorReagentIds } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
 import { getRealms } from "@/lib/api";
-import { formatCopper } from "@/lib/format";
+import { formatCopper, formatPercent } from "@/lib/format";
 import { expectedNet, partialReagentCost } from "@/lib/yield";
 import { useRoster } from "@/stores/roster";
 import type { Realm } from "@/types/api";
@@ -94,7 +94,7 @@ export function ProfitsPage() {
         <div>
           <h1 className="text-lg font-semibold">Crafting profitability</h1>
           <p className="text-muted-foreground text-xs">
-            Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Thalassian Lumber is warbound, so it is left out of the cost. Expected net assumes a sale until TradeSkillMaster provides a sale rate.
+            Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Thalassian Lumber is warbound, so it is left out of the cost. Sale rate is the TradeSkillMaster region rate, and expected net assumes a sale when that rate is missing.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -152,7 +152,7 @@ export function ProfitsPage() {
               header: "Sale rate",
               align: "right",
               sortValue: (row) => row.saleRate ?? -1,
-              cell: (row) => (row.saleRate == null ? "n/a" : `${Math.round(row.saleRate * 100)}%`),
+              cell: (row) => (row.saleRate == null ? "n/a" : formatPercent(row.saleRate)),
             },
             {
               key: "net",

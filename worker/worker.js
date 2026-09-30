@@ -289,27 +289,75 @@ async function blizzardPrices(env, region, itemIds, connectedRealmId) {
   return { rateLimited: false, prices: filtered };
 }
 
-async function tsmPrices(env, region, itemIds) {
-  if (!env.TSM_API_KEY || !env.TSM_API_BASE || itemIds.length === 0) return new Map();
-  const url = new URL(env.TSM_API_BASE);
-  url.searchParams.set("region", region);
-  url.searchParams.set("items", itemIds.join(","));
-  const response = await fetch(url, {
-    headers: { authorization: `Bearer ${env.TSM_API_KEY}` },
-  });
-  if (!response.ok) return new Map();
-  const payload = await readBoundedJson(response);
-  const rows = Array.isArray(payload) ? payload : payload.items || payload.results || [];
+function parseCsvLine(line) {
+  const fields = [];
+  let current = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    if (quoted) {
+      if (char === '"') {
+        if (line[index + 1] === '"') {
+          current += '"';
+          index += 1;
+        } else {
+          quoted = false;
+        }
+      } else {
+        current += char;
+      }
+    } else if (char === '"') {
+      quoted = true;
+    } else if (char === ",") {
+      fields.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+
+export function parseTsmSaleRates(csv) {
+  const rates = {};
+  const lines = String(csv).split(/\r?\n/);
+  const header = parseCsvLine(lines[0] || "");
+  const idIndex = header.indexOf("itemId");
+  const rateIndex = header.indexOf("saleRate");
+  if (idIndex < 0 || rateIndex < 0) return rates;
+  for (let index = 1; index < lines.length; index += 1) {
+    if (!lines[index]) continue;
+    const fields = parseCsvLine(lines[index]);
+    const itemId = Number(fields[idIndex]);
+    const saleRate = Number(fields[rateIndex]);
+    if (!Number.isInteger(itemId) || itemId <= 0 || !Number.isFinite(saleRate)) continue;
+    rates[itemId] = saleRate;
+  }
+  return rates;
+}
+
+async function tsmSaleRates(region, itemIds) {
+  if (itemIds.length === 0 || !REGIONS[region]) return new Map();
+  const cacheKey = new Request(`https://goldgoblin-cache.internal/tsm-sale-rates/${region}`);
+  const cached = await caches.default.match(cacheKey);
+  let rates = cached ? await cached.json() : null;
+  if (!rates) {
+    const response = await fetch(`https://public-data.tradeskillmaster.com/retail/${region}/region/items.csv`);
+    if (!response.ok) return new Map();
+    const length = Number(response.headers.get("content-length") || 0);
+    if (length > MAX_UPSTREAM_BYTES) return new Map();
+    rates = parseTsmSaleRates(await response.text());
+    if (Object.keys(rates).length === 0) return new Map();
+    await caches.default.put(
+      cacheKey,
+      new Response(JSON.stringify(rates), { headers: { "cache-control": "max-age=21600" } }),
+    );
+  }
   const quotes = new Map();
-  for (const row of rows) {
-    const itemId = Number(row.itemId ?? row.item_id ?? row.id);
-    if (!itemId) continue;
-    const marketValue = row.marketValue ?? row.market_value ?? row.avgSalePrice ?? null;
-    const saleRate = row.saleRate ?? row.sale_rate ?? null;
-    quotes.set(itemId, {
-      marketValue: typeof marketValue === "number" ? marketValue : null,
-      saleRate: typeof saleRate === "number" ? saleRate : null,
-    });
+  for (const itemId of itemIds) {
+    const saleRate = rates[itemId];
+    if (typeof saleRate === "number") quotes.set(itemId, saleRate);
   }
   return quotes;
 }
@@ -320,21 +368,20 @@ async function liveQuotes(env, region, itemIds, connectedRealmId) {
   }
   const blizzard = await blizzardPrices(env, region, itemIds, connectedRealmId);
   if (blizzard.rateLimited) return { error: "rate_limited", status: 429, quotes: [] };
-  const tsm = await tsmPrices(env, region, itemIds);
+  let saleRates = new Map();
+  try {
+    saleRates = await tsmSaleRates(region, itemIds);
+  } catch {
+    saleRates = new Map();
+  }
   const now = new Date().toISOString();
-  const quotes = itemIds.map((itemId) => {
-    const tsmRow = tsm.get(itemId);
-    const blizzardValue = blizzard.prices.get(itemId) ?? null;
-    const marketValue = tsmRow?.marketValue ?? blizzardValue;
-    const source = tsmRow ? "tsm" : "blizzard";
-    return {
-      itemId,
-      marketValue,
-      saleRate: tsmRow?.saleRate ?? null,
-      updatedAt: now,
-      source,
-    };
-  });
+  const quotes = itemIds.map((itemId) => ({
+    itemId,
+    marketValue: blizzard.prices.get(itemId) ?? null,
+    saleRate: saleRates.get(itemId) ?? null,
+    updatedAt: now,
+    source: "blizzard",
+  }));
   return { quotes, status: 200 };
 }
 
