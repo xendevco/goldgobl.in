@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RealmPicker } from "@/components/RealmPicker";
 import { SortableTable } from "@/components/SortableTable";
 import { decorItems, decorReagentIds } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
@@ -98,21 +98,7 @@ export function ProfitsPage() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Select
-            value={settings.homeRealmId ? String(settings.homeRealmId) : undefined}
-            onValueChange={(value) => setHomeRealmId(Number(value))}
-          >
-            <SelectTrigger size="sm" aria-label="Home realm" className="w-44">
-              <SelectValue placeholder="Choose realm" />
-            </SelectTrigger>
-            <SelectContent>
-              {realms.map((realm) => (
-                <SelectItem key={realm.id} value={String(realm.id)}>
-                  {realm.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <RealmPicker realms={realms} value={settings.homeRealmId} onChange={setHomeRealmId} />
           {reagentPrices.stale || marketPrices.stale ? <Badge variant="outline">Stale cache</Badge> : null}
           {loading ? <span className="text-muted-foreground text-xs">Loading prices</span> : null}
           <Button

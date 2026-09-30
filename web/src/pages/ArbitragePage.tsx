@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RealmPicker } from "@/components/RealmPicker";
 import { SortableTable } from "@/components/SortableTable";
 import { arbitrageWatchlist } from "@/data/watchlist";
 import { getPrices, getRealms } from "@/lib/api";
@@ -100,18 +100,7 @@ export function ArbitragePage() {
       <div className="flex flex-wrap items-center gap-3">
         <label className="text-muted-foreground flex items-center gap-2 text-xs">
           Home
-          <Select value={homeRealmId ? String(homeRealmId) : undefined} onValueChange={(value) => setHomeRealmId(Number(value))}>
-            <SelectTrigger size="sm" aria-label="Home realm" className="w-44">
-              <SelectValue placeholder="Choose realm" />
-            </SelectTrigger>
-            <SelectContent>
-              {realms.map((realm) => (
-                <SelectItem key={realm.id} value={String(realm.id)}>
-                  {realm.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <RealmPicker realms={realms} value={homeRealmId} onChange={setHomeRealmId} />
         </label>
         <div className="flex flex-wrap gap-1">
           {realms
