@@ -1,0 +1,13 @@
+{
+  "name": "goldgoblin-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var FIXTURE_MODE:1",
+    "test": "node --test worker.test.js",
+    "check": "wrangler check"
+  },
+  "devDependencies": {
+    "wrangler": "^4.54.0"
+  }
+}

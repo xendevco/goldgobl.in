@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goldgobl.in/schema/payload-v1.json",
+  "title": "GoldGoblin export v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "exportedAt", "characters"],
+  "properties": {
+    "v": { "const": 1 },
+    "exportedAt": { "type": "integer", "minimum": 0 },
+    "characters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/character" }
+    }
+  },
+  "$defs": {
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "realm", "class", "race", "faction", "professions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "realm": { "type": "string", "minLength": 1 },
+        "class": { "type": "string" },
+        "race": { "type": "string", "minLength": 1 },
+        "faction": { "type": "string" },
+        "professions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/profession" }
+        }
+      }
+    },
+    "profession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "skill", "maxSkill", "knowledge", "equipment", "recipes"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "skill": { "type": "integer", "minimum": 0 },
+        "maxSkill": { "type": "integer", "minimum": 0 },
+        "knowledge": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "equipment": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/equipment" }
+        },
+        "recipes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/recipe" }
+        }
+      }
+    },
+    "equipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slot", "itemId", "name"],
+      "properties": {
+        "slot": { "type": "string" },
+        "itemId": { "type": "integer" },
+        "name": { "type": "string" }
+      }
+    },
+    "recipe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" }
+      }
+    }
+  }
+}

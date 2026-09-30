@@ -1,0 +1,24 @@
+name = "goldgoblin-api"
+main = "worker.js"
+compatibility_date = "2026-09-29"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+# Local fixture prices: npm run dev (passes FIXTURE_MODE=1).
+# Production stays on live upstreams. Do not commit secrets.
+# wrangler secret put BLIZZARD_CLIENT_ID
+# wrangler secret put BLIZZARD_CLIENT_SECRET
+# wrangler secret put TSM_API_KEY
+# wrangler secret put TSM_API_BASE
+# wrangler secret put JWT_SECRET
+
+[vars]
+FIXTURE_MODE = "0"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[[routes]]
+pattern = "api.goldgobl.in"
+custom_domain = true
