@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PriceStamp } from "@/components/PriceStamp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -47,6 +48,7 @@ export function DecorPage() {
               ))}
             </SelectContent>
           </Select>
+          <PriceStamp asOf={prices.asOf} stale={prices.stale} />
           {prices.stale ? <Badge variant="outline">Stale cache</Badge> : null}
           <Button size="sm" variant="outline" onClick={() => void prices.refresh()}>
             Refresh

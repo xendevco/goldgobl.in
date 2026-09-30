@@ -40,6 +40,26 @@ export function reagentCost(
   return partial.missing.length === 0 ? partial.total : null;
 }
 
+export function cheapestSlotCost(
+  slots: { quantity: number; options: { itemId: number; name: string }[] }[],
+  prices: Map<number, number | null>,
+): { total: number; missing: string[] } {
+  let total = 0;
+  const missing: string[] = [];
+  for (const slot of slots) {
+    let cheapest: number | null = null;
+    for (const option of slot.options) {
+      const price = prices.get(option.itemId);
+      if (price == null) continue;
+      const cost = price * slot.quantity;
+      if (cheapest == null || cost < cheapest) cheapest = cost;
+    }
+    if (cheapest == null) missing.push(slot.options.map((option) => option.name).join(" / "));
+    else total += cheapest;
+  }
+  return { total, missing };
+}
+
 export function partialReagentCost(
   reagents: { itemId: number; name?: string; quantity: number }[],
   prices: Map<number, number | null>,

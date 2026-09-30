@@ -4,9 +4,22 @@ export type Equipment = {
   name: string;
 };
 
+export type ReagentOption = {
+  itemId: number;
+  name: string;
+};
+
+export type RecipeReagent = {
+  quantity: number;
+  options: ReagentOption[];
+};
+
 export type KnownRecipe = {
   id: number;
   name: string;
+  itemId?: number;
+  quantity?: number;
+  reagents?: RecipeReagent[];
 };
 
 export type Profession = {

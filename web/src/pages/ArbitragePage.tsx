@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { PriceStamp } from "@/components/PriceStamp";
 import { Badge } from "@/components/ui/badge";
 import { RealmPicker } from "@/components/RealmPicker";
 import { SortableTable } from "@/components/SortableTable";
 import { arbitrageWatchlist } from "@/data/watchlist";
 import { getPrices, getRealms } from "@/lib/api";
 import { arbitrageSpread, rankSpreads, type SpreadRow } from "@/lib/arbitrage";
-import { formatCopper } from "@/lib/format";
+import { earlierAsOf, formatCopper } from "@/lib/format";
 import { useRoster } from "@/stores/roster";
 import type { Realm } from "@/types/api";
 
@@ -18,6 +19,8 @@ export function ArbitragePage() {
   const setWatchRealmIds = useRoster((state) => state.setWatchRealmIds);
   const [realms, setRealms] = useState<Realm[]>([]);
   const [rows, setRows] = useState<SpreadRow[]>([]);
+  const [asOf, setAsOf] = useState<string | null>(null);
+  const [stale, setStale] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -78,6 +81,8 @@ export function ArbitragePage() {
           if (best) ranked.push(best);
         }
         setRows(rankSpreads(ranked));
+        setStale(home.stale || remotes.some((remote) => remote.result.stale));
+        setAsOf(earlierAsOf([home, ...remotes.map((remote) => remote.result)].flatMap((result) => result.quotes.map((quote) => quote.updatedAt))));
         setError(null);
       })
       .catch((caught: unknown) => {
@@ -94,7 +99,7 @@ export function ArbitragePage() {
       <div>
         <h1 className="text-lg font-semibold">Cross-realm arbitrage</h1>
         <p className="text-muted-foreground text-xs">
-          Spread is the remote price minus the home price minus the auction house cut. Home realm: {realms.find((realm) => realm.id === homeRealmId)?.name ?? homeNameFallback(homeRealmId)}.
+          Spread is the remote price minus the home price minus the auction house cut. Home realm: {realms.find((realm) => realm.id === homeRealmId)?.name ?? homeNameFallback(homeRealmId)}. <PriceStamp asOf={asOf} stale={stale} />
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-3">

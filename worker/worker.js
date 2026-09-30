@@ -201,14 +201,21 @@ export function fixtureQuote(itemId, connectedRealmId) {
   };
 }
 
-function parseItemIds(value) {
+function parseItemIds(value, limit = 800) {
   if (!value) return [];
   const ids = [];
   for (const part of value.split(",")) {
     const id = Number(part);
     if (Number.isInteger(id) && id > 0) ids.push(id);
   }
-  return [...new Set(ids)].slice(0, 800);
+  return [...new Set(ids)].slice(0, limit);
+}
+
+export function auctionSnapshotTime(headers, now = new Date()) {
+  const header = headers?.get?.("last-modified") || headers?.get?.("date");
+  const parsed = header ? new Date(header) : now;
+  if (Number.isNaN(parsed.getTime())) return now.toISOString();
+  return parsed.toISOString();
 }
 
 async function readBoundedJson(response) {
@@ -279,14 +286,15 @@ async function blizzardPrices(env, region, itemIds, connectedRealmId) {
   const response = await fetch(url, { headers: { authorization: `Bearer ${token}` } });
   if (response.status === 429) return { rateLimited: true, prices: new Map() };
   if (!response.ok) throw new Error("blizzard_failed");
+  const asOf = auctionSnapshotTime(response.headers);
   const prices = reduceAuctions(await readBoundedJson(response));
   const wanted = new Set(itemIds);
-  if (wanted.size === 0) return { rateLimited: false, prices };
+  if (wanted.size === 0) return { rateLimited: false, prices, asOf };
   const filtered = new Map();
   for (const id of wanted) {
     if (prices.has(id)) filtered.set(id, prices.get(id));
   }
-  return { rateLimited: false, prices: filtered };
+  return { rateLimited: false, prices: filtered, asOf };
 }
 
 function parseCsvLine(line) {
@@ -379,16 +387,16 @@ async function liveQuotes(env, region, itemIds, connectedRealmId) {
   } catch {
     saleRates = new Map();
   }
-  const now = new Date().toISOString();
+  const asOf = blizzard.asOf || new Date().toISOString();
   const quotes = itemIds.map((itemId) => ({
     itemId,
     marketValue: blizzard.prices.get(itemId) ?? null,
     saleRate: saleRates.get(itemId)?.saleRate ?? null,
     soldPerDay: saleRates.get(itemId)?.soldPerDay ?? null,
-    updatedAt: now,
+    updatedAt: asOf,
     source: "blizzard",
   }));
-  return { quotes, status: 200 };
+  return { quotes, asOf, status: 200 };
 }
 
 function localisedName(value) {
@@ -504,6 +512,7 @@ export default {
         return json({
           region,
           connectedRealmId: url.pathname === "/v1/commodities" ? null : connectedRealmId,
+          asOf: result.asOf,
           quotes: result.quotes,
         }, 200, origin);
       }

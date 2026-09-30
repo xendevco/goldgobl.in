@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import worker, { authorise, fixtureQuote, parseTsmSaleRates, rateLimit, reduceAuctions } from "./worker.js";
+import worker, { auctionSnapshotTime, authorise, fixtureQuote, parseTsmSaleRates, rateLimit, reduceAuctions } from "./worker.js";
 
 test("authorise stays on the free tier when no JWT secret is configured", async () => {
   const result = await authorise(new Request("https://api.goldgobl.in/health"), {});
@@ -94,6 +94,11 @@ test("parseTsmSaleRates reads the public region CSV", () => {
   assert.equal(rates[262601].soldPerDay, 0.11);
   assert.equal(rates[3042].saleRate, 0.036);
   assert.equal(rates[256963], undefined);
+});
+
+test("auctionSnapshotTime prefers the auction house last-modified header", () => {
+  const headers = new Headers({ "last-modified": "Wed, 30 Sep 2026 07:41:00 GMT" });
+  assert.equal(auctionSnapshotTime(headers, new Date("2026-09-30T08:00:00Z")), "2026-09-30T07:41:00.000Z");
 });
 
 test("reduceAuctions keeps the cheapest unit price", () => {

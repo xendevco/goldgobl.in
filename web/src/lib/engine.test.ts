@@ -3,7 +3,8 @@ import { arbitrageSpread, rankSpreads } from "@/lib/arbitrage";
 import { decodeExport, encodeExport, importRoster } from "@/lib/import";
 import { cheapestPath, type LevellingRecipe } from "@/lib/levelling";
 import { optimiseRoster } from "@/lib/roster";
-import { expectedNet } from "@/lib/yield";
+import { cheapestSlotCost, expectedNet } from "@/lib/yield";
+import { rosterCrafts } from "@/lib/crafts";
 import { decorReagentIds } from "@/data/decor";
 import type { Character, Profession } from "@/types/character";
 
@@ -119,6 +120,38 @@ describe("GG1 import", () => {
     const corrupt = importRoster(roster, "GG1:not-valid", "replace");
     expect(corrupt.error).toBeTruthy();
     expect(corrupt.characters).toBe(roster);
+  });
+});
+
+describe("roster crafts", () => {
+  it("prices the cheapest material in a required slot and keeps scanned recipes", () => {
+    expect(
+      cheapestSlotCost(
+        [{ quantity: 2, options: [{ itemId: 1, name: "Silverleaf" }, { itemId: 2, name: "Peacebloom" }] }],
+        new Map([
+          [1, 100],
+          [2, 40],
+        ]),
+      ),
+    ).toEqual({ total: 80, missing: [] });
+
+    const scanned = character("Quill", "Nightborne", [
+      profession("Inscription", 90, []),
+    ]);
+    scanned.professions[0].recipes = [
+      {
+        id: 10,
+        name: "Midnight Ink",
+        itemId: 20,
+        quantity: 1,
+        reagents: [{ quantity: 1, options: [{ itemId: 1, name: "Pigment" }] }],
+      },
+      { id: 11, name: "Old scroll" },
+    ];
+    const result = rosterCrafts([scanned]);
+    expect(result.crafts.map((craft) => craft.name)).toEqual(["Midnight Ink"]);
+    expect(result.unscanned).toBe(1);
+    expect(decodeExport(encodeExport({ v: 1, exportedAt: 1, characters: [scanned] })).characters[0].professions[0].recipes[0].itemId).toBe(20);
   });
 });
 

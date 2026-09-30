@@ -69,6 +69,34 @@
       "required": ["id", "name"],
       "properties": {
         "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "itemId": { "type": "integer", "minimum": 1 },
+        "quantity": { "type": "integer", "minimum": 1 },
+        "reagents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/recipeReagent" }
+        }
+      }
+    },
+    "recipeReagent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quantity", "options"],
+      "properties": {
+        "quantity": { "type": "integer", "minimum": 1 },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/reagentOption" }
+        }
+      }
+    },
+    "reagentOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["itemId", "name"],
+      "properties": {
+        "itemId": { "type": "integer", "minimum": 1 },
         "name": { "type": "string" }
       }
     }

@@ -208,6 +208,56 @@ local function scanSkillLines()
   end
 end
 
+local function itemName(itemID)
+  if type(C_Item) == "table" and type(C_Item.GetItemNameByID) == "function" then
+    local ok, name = pcall(C_Item.GetItemNameByID, itemID)
+    if ok and type(name) == "string" and name ~= "" then return name end
+  end
+  if type(GetItemInfo) == "function" then
+    local name = GetItemInfo(itemID)
+    if type(name) == "string" and name ~= "" then return name end
+  end
+  return "Item " .. tostring(itemID)
+end
+
+local function readSchematic(recipeID)
+  if type(C_TradeSkillUI.GetRecipeSchematic) ~= "function" then return nil end
+  local ok, schematic = pcall(C_TradeSkillUI.GetRecipeSchematic, recipeID, false)
+  if not ok or type(schematic) ~= "table" then return nil end
+  local itemID = schematic.outputItemID
+  if type(itemID) ~= "number" or itemID <= 0 then
+    if type(C_TradeSkillUI.GetRecipeOutputItemData) == "function" then
+      local outOk, output = pcall(C_TradeSkillUI.GetRecipeOutputItemData, recipeID)
+      if outOk and type(output) == "table" then itemID = output.itemID end
+    end
+  end
+  if type(itemID) ~= "number" or itemID <= 0 then return nil end
+  local quantity = schematic.quantityMin or schematic.quantityMax or 1
+  if type(quantity) ~= "number" or quantity < 1 then quantity = 1 end
+  local reagents = {}
+  if type(schematic.reagentSlotSchematics) == "table" then
+    for _, slot in ipairs(schematic.reagentSlotSchematics) do
+      if type(slot) == "table" and slot.required ~= false then
+        local options = {}
+        if type(slot.reagents) == "table" then
+          for _, reagent in ipairs(slot.reagents) do
+            local reagentID = type(reagent) == "table" and reagent.itemID or nil
+            if type(reagentID) == "number" and reagentID > 0 then
+              options[#options + 1] = { itemId = reagentID, name = itemName(reagentID) }
+            end
+          end
+        end
+        local needed = slot.quantityRequired or 1
+        if #options > 0 and type(needed) == "number" and needed > 0 then
+          reagents[#reagents + 1] = { quantity = math.floor(needed), options = options }
+        end
+      end
+    end
+  end
+  if #reagents == 0 then return nil end
+  return { itemId = itemID, quantity = math.floor(quantity), reagents = reagents }
+end
+
 local function scanOpenProfession()
   if type(C_TradeSkillUI) ~= "table" or type(C_TradeSkillUI.GetBaseProfessionInfo) ~= "function" then return end
   local character = database().characters[GoldGoblin_CharacterKey()]
@@ -224,11 +274,18 @@ local function scanOpenProfession()
           local infoOk, recipeInfo = pcall(C_TradeSkillUI.GetRecipeInfo, recipeID)
           if infoOk then info = recipeInfo end
         end
-        if type(info) ~= "table" or info.learned ~= false then
-          recipes[#recipes + 1] = {
-            id = recipeID,
-            name = type(info) == "table" and type(info.name) == "string" and info.name or "",
-          }
+        local name = type(info) == "table" and type(info.name) == "string" and info.name or ""
+        local learned = type(info) ~= "table" or info.learned ~= false
+        local recraft = type(info) == "table" and (info.isRecraft or name:find("^Recraft") == 1)
+        if learned and not recraft then
+          local recipe = { id = recipeID, name = name }
+          local schematic = readSchematic(recipeID)
+          if schematic then
+            recipe.itemId = schematic.itemId
+            recipe.quantity = schematic.quantity
+            recipe.reagents = schematic.reagents
+          end
+          recipes[#recipes + 1] = recipe
         end
       end
     end
@@ -316,7 +373,7 @@ local function ensureFrame()
   hint:SetPoint("TOPLEFT", 20, -42)
   hint:SetPoint("TOPRIGHT", -20, -42)
   hint:SetJustifyH("LEFT")
-  hint:SetText("Click Copy, then press Ctrl+C. Logging another character adds them to the same export.")
+  hint:SetText("Open each profession first, then click Copy and press Ctrl+C. Logging another character adds them to the same export.")
 
   local scroll = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
   scroll:SetPoint("TOPLEFT", 20, -72)

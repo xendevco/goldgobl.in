@@ -21,3 +21,22 @@ export function formatToken(token: string): string {
 export function formatPercent(value: number): string {
   return `${Math.round(value * 1000) / 10}%`;
 }
+
+export function earlierAsOf(values: (string | null | undefined)[]): string | null {
+  const times = values.map((value) => (value ? Date.parse(value) : Number.NaN)).filter((time) => !Number.isNaN(time));
+  if (times.length === 0) return null;
+  return new Date(Math.min(...times)).toISOString();
+}
+
+export function formatRefreshed(asOf: string | null, stale: boolean): string | null {
+  if (!asOf) return null;
+  const date = new Date(asOf);
+  if (Number.isNaN(date.getTime())) return null;
+  const clock = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+  return stale ? `Cached auction house data from ${clock}` : `Auction house data from ${clock}`;
+}
