@@ -36,13 +36,36 @@ export type DecorItem = {
   reagents: DecorReagent[];
 };
 
-export const decorItems = decorJson as DecorItem[];
-
 export const THALASSIAN_LUMBER_ID = 256963;
+
+const LUMBER_EXPANSION: Record<string, DecorExpansion> = {
+  "Thalassian Lumber": "Midnight",
+  "Dornic Fir Lumber": "The War Within",
+  "Dragonpine Lumber": "Dragonflight",
+  "Arden Lumber": "Shadowlands",
+  "Darkpine Lumber": "Battle for Azeroth",
+  "Fel-Touched Lumber": "Legion",
+  "Shadowmoon Lumber": "Warlords of Draenor",
+  "Bamboo Lumber": "Mists of Pandaria",
+  "Ashwood Lumber": "Cataclysm",
+  "Coldwind Lumber": "Wrath of the Lich King",
+  "Olemba Lumber": "Burning Crusade",
+  "Ironwood Lumber": "Classic",
+};
 
 export function isLumberReagent(reagent: { name: string }): boolean {
   return reagent.name.endsWith("Lumber");
 }
+
+export function expansionFromReagents(reagents: { name: string }[], fallback: string): string {
+  const lumber = reagents.find(isLumberReagent);
+  return (lumber && LUMBER_EXPANSION[lumber.name]) || fallback;
+}
+
+export const decorItems = (decorJson as DecorItem[]).map((item) => ({
+  ...item,
+  expansion: expansionFromReagents(item.reagents, item.expansion),
+}));
 
 export function decorExpansions(items: DecorItem[] = decorItems): string[] {
   const present = new Set(items.map((item) => item.expansion));

@@ -1,5 +1,20 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
+const LUMBER_EXPANSION = {
+  "Thalassian Lumber": "Midnight",
+  "Dornic Fir Lumber": "The War Within",
+  "Dragonpine Lumber": "Dragonflight",
+  "Arden Lumber": "Shadowlands",
+  "Darkpine Lumber": "Battle for Azeroth",
+  "Fel-Touched Lumber": "Legion",
+  "Shadowmoon Lumber": "Warlords of Draenor",
+  "Bamboo Lumber": "Mists of Pandaria",
+  "Ashwood Lumber": "Cataclysm",
+  "Coldwind Lumber": "Wrath of the Lich King",
+  "Olemba Lumber": "Burning Crusade",
+  "Ironwood Lumber": "Classic",
+};
+
 const professions = [
   "Alchemy",
   "Blacksmithing",
@@ -44,22 +59,25 @@ function recordsFrom(html) {
     if (!arrayText || !profession) continue;
     let reagents;
     try {
-      reagents = JSON.parse(arrayText).map((reagent) => ({
-        itemId: reagent.item,
-        name: reagent.name,
-        quantity: reagent.quantity,
-      }));
+      reagents = JSON.parse(arrayText)
+        .map((reagent) => ({
+          itemId: reagent.item,
+          name: reagent.name,
+          quantity: reagent.quantity,
+        }))
+        .filter((reagent) => reagent.itemId > 0 && reagent.quantity > 0);
     } catch {
       continue;
     }
-    const expansion = /"groupName":"Expansion Aesthetic","id":\d+,"name":"([^"]+)"/.exec(window)?.[1];
+    const tagged = /"groupName":"Expansion Aesthetic","id":\d+,"name":"([^"]+)"/.exec(window)?.[1];
     const craftName = /"entityId":\d+,"name":"((?:\\.|[^"\\])*)"/.exec(window)?.[1];
+    const lumber = reagents.find((reagent) => reagent.name.endsWith("Lumber"));
     records.push({
       recipeId: spellId,
       name: craftName?.replace(/\\"/g, '"') ?? `Spell ${spellId}`,
       profession,
-      expansion: expansion ?? skillName.slice(0, skillName.length - profession.length).trim(),
-      reagents: reagents.filter((reagent) => reagent.itemId > 0 && reagent.quantity > 0),
+      expansion: (lumber && LUMBER_EXPANSION[lumber.name]) || tagged || skillName.slice(0, skillName.length - profession.length).trim(),
+      reagents,
     });
   }
   return records;
