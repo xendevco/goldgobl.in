@@ -37,11 +37,20 @@ export function reagentCost(
   reagents: { itemId: number; quantity: number }[],
   prices: Map<number, number | null>,
 ): number | null {
+  const partial = partialReagentCost(reagents, prices);
+  return partial.missing.length === 0 ? partial.total : null;
+}
+
+export function partialReagentCost(
+  reagents: { itemId: number; name?: string; quantity: number }[],
+  prices: Map<number, number | null>,
+): { total: number; missing: string[] } {
   let total = 0;
+  const missing: string[] = [];
   for (const reagent of reagents) {
     const price = prices.get(reagent.itemId);
-    if (price == null) return null;
-    total += price * reagent.quantity;
+    if (price == null) missing.push(reagent.name ?? String(reagent.itemId));
+    else total += price * reagent.quantity;
   }
-  return total;
+  return { total, missing };
 }

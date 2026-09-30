@@ -4,7 +4,7 @@ import { SortableTable } from "@/components/SortableTable";
 import { decorItems, decorReagentIds } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
 import { formatCopper } from "@/lib/format";
-import { reagentCost } from "@/lib/yield";
+import { partialReagentCost } from "@/lib/yield";
 
 const reagentIds = decorReagentIds();
 
@@ -12,7 +12,7 @@ export function DecorPage() {
   const prices = usePrices(reagentIds);
   const rows = decorItems.map((item) => ({
     item,
-    cost: reagentCost(
+    cost: partialReagentCost(
       item.reagents,
       new Map(item.reagents.map((reagent) => [reagent.itemId, prices.quotes[reagent.itemId]?.marketValue ?? null])),
     ),
@@ -24,7 +24,7 @@ export function DecorPage() {
         <div>
           <h1 className="text-lg font-semibold">Midnight decor hub</h1>
           <p className="text-muted-foreground text-xs">
-            Pricing {reagentIds.length} reagents. Output items stay off this request so the housing list stays small.
+            Pricing {reagentIds.length} reagents. Thalassian Lumber is warbound and is left out of the cost.
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -53,8 +53,13 @@ export function DecorPage() {
               key: "cost",
               header: "Reagent cost",
               align: "right",
-              sortValue: (row) => row.cost ?? -1,
-              cell: (row) => formatCopper(row.cost),
+              sortValue: (row) => row.cost.total,
+              cell: (row) => (
+                <span>
+                  {formatCopper(row.cost.total)}
+                  {row.cost.missing.length > 0 ? <span className="text-muted-foreground block text-[10px]">excludes {row.cost.missing.join(", ")}</span> : null}
+                </span>
+              ),
             },
           ]}
         />

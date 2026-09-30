@@ -1,12 +1,17 @@
+import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SortableTable } from "@/components/SortableTable";
-import { decorItems } from "@/data/decor";
+import { decorItems, decorReagentIds } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
+import { getRealms } from "@/lib/api";
 import { formatCopper } from "@/lib/format";
-import { expectedNet, reagentCost } from "@/lib/yield";
+import { expectedNet, partialReagentCost } from "@/lib/yield";
 import { useRoster } from "@/stores/roster";
+import type { Realm } from "@/types/api";
+
 function percentField(label: string, value: number, onChange: (value: number) => void) {
   return (
     <label className="text-muted-foreground flex items-center gap-2 text-xs">
@@ -27,44 +32,97 @@ function percentField(label: string, value: number, onChange: (value: number) =>
 export function ProfitsPage() {
   const settings = useRoster((state) => state.settings);
   const setCraftStat = useRoster((state) => state.setCraftStat);
-  const itemIds = [
-    ...new Set(decorItems.flatMap((item) => [item.itemId, ...item.reagents.map((reagent) => reagent.itemId)])),
-  ];
-  const prices = usePrices(itemIds);
+  const setHomeRealmId = useRoster((state) => state.setHomeRealmId);
+  const [realms, setRealms] = useState<Realm[]>([]);
+  const homeRealm = realms.find((realm) => realm.id === settings.homeRealmId);
+  const reagentPrices = usePrices(decorReagentIds());
+  const marketPrices = usePrices(
+    homeRealm ? decorItems.map((item) => item.itemId) : [],
+    homeRealm?.id,
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    getRealms(settings.region)
+      .then((next) => {
+        if (!cancelled) setRealms(next);
+      })
+      .catch(() => {
+        if (!cancelled) setRealms([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [settings.region]);
+
+  useEffect(() => {
+    if (realms.length === 0) return;
+    if (settings.homeRealmId != null && realms.some((realm) => realm.id === settings.homeRealmId)) return;
+    const preferred =
+      realms.find((realm) => realm.name.includes("Tarren Mill")) ??
+      realms.find((realm) => realm.name === "Silvermoon") ??
+      realms[0];
+    setHomeRealmId(preferred.id);
+  }, [realms, setHomeRealmId, settings.homeRealmId]);
 
   const rows = decorItems.map((item) => {
-    const priceOf = (id: number) => prices.quotes[id]?.marketValue ?? null;
-    const cost = reagentCost(
+    const materials = partialReagentCost(
       item.reagents,
-      new Map(item.reagents.map((reagent) => [reagent.itemId, priceOf(reagent.itemId)])),
+      new Map(item.reagents.map((reagent) => [reagent.itemId, reagentPrices.quotes[reagent.itemId]?.marketValue ?? null])),
     );
-    const sell = priceOf(item.itemId);
-    const saleRate = prices.quotes[item.itemId]?.saleRate ?? 0;
+    const sell = marketPrices.quotes[item.itemId]?.marketValue ?? null;
+    const saleRate = marketPrices.quotes[item.itemId]?.saleRate ?? null;
     const net =
-      cost == null || sell == null
+      sell == null
         ? null
         : expectedNet({
-            reagentCost: cost,
+            reagentCost: materials.total,
             sellPrice: sell,
-            saleRate,
+            saleRate: saleRate ?? 1,
             multicraftChance: settings.multicraftChance,
             resourcefulnessChance: settings.resourcefulnessChance,
             ingenuityChance: settings.ingenuityChance,
           });
-    return { item, cost, sell, saleRate, net };
+    return { item, cost: materials.total, missing: materials.missing, sell, saleRate, net };
   });
+  const loading = reagentPrices.loading || marketPrices.loading;
+  const error = reagentPrices.error ?? marketPrices.error;
 
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-lg font-semibold">Crafting profitability</h1>
-          <p className="text-muted-foreground text-xs">Expected net uses Multicraft, Resourcefulness, and Ingenuity on live reagent prices.</p>
+          <p className="text-muted-foreground text-xs">
+            Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Thalassian Lumber is warbound, so it is left out of the cost. Expected net assumes a sale until TradeSkillMaster provides a sale rate.
+          </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          {prices.stale ? <Badge variant="outline">Stale cache</Badge> : null}
-          {prices.loading ? <span className="text-muted-foreground text-xs">Loading prices</span> : null}
-          <Button size="sm" variant="outline" onClick={() => void prices.refresh()}>
+          <Select
+            value={settings.homeRealmId ? String(settings.homeRealmId) : undefined}
+            onValueChange={(value) => setHomeRealmId(Number(value))}
+          >
+            <SelectTrigger size="sm" aria-label="Home realm" className="w-44">
+              <SelectValue placeholder="Choose realm" />
+            </SelectTrigger>
+            <SelectContent>
+              {realms.map((realm) => (
+                <SelectItem key={realm.id} value={String(realm.id)}>
+                  {realm.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {reagentPrices.stale || marketPrices.stale ? <Badge variant="outline">Stale cache</Badge> : null}
+          {loading ? <span className="text-muted-foreground text-xs">Loading prices</span> : null}
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              void reagentPrices.refresh();
+              void marketPrices.refresh();
+            }}
+          >
             Refresh
           </Button>
         </div>
@@ -74,7 +132,7 @@ export function ProfitsPage() {
         {percentField("Resourcefulness %", settings.resourcefulnessChance, (value) => setCraftStat("resourcefulnessChance", value))}
         {percentField("Ingenuity %", settings.ingenuityChance, (value) => setCraftStat("ingenuityChance", value))}
       </div>
-      {prices.error ? <p className="text-destructive text-xs">{prices.error}</p> : null}
+      {error ? <p className="text-destructive text-xs">{error}</p> : null}
       <div className="border-border overflow-hidden rounded-md border">
         <SortableTable
           rows={rows}
@@ -89,7 +147,12 @@ export function ProfitsPage() {
               header: "Expected cost",
               align: "right",
               sortValue: (row) => row.cost ?? -1,
-              cell: (row) => formatCopper(row.cost),
+              cell: (row) => (
+                <span>
+                  {formatCopper(row.cost)}
+                  {row.missing.length > 0 ? <span className="text-muted-foreground block text-[10px]">excludes {row.missing.join(", ")}</span> : null}
+                </span>
+              ),
             },
             {
               key: "sell",
@@ -102,8 +165,8 @@ export function ProfitsPage() {
               key: "sale",
               header: "Sale rate",
               align: "right",
-              sortValue: (row) => row.saleRate,
-              cell: (row) => `${Math.round(row.saleRate * 100)}%`,
+              sortValue: (row) => row.saleRate ?? -1,
+              cell: (row) => (row.saleRate == null ? "n/a" : `${Math.round(row.saleRate * 100)}%`),
             },
             {
               key: "net",
