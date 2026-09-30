@@ -1,89 +1,140 @@
-import { writeFileSync, readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
-const guide = readFileSync(process.env.GUIDE_HTML, "utf8");
-const skillNames = {
-  171: "Alchemy",
-  164: "Blacksmithing",
-  333: "Enchanting",
-  202: "Engineering",
-  773: "Inscription",
-  755: "Jewelcrafting",
-  165: "Leatherworking",
-  197: "Tailoring",
-  185: "Cooking",
-};
+const professions = [
+  "Alchemy",
+  "Blacksmithing",
+  "Enchanting",
+  "Engineering",
+  "Inscription",
+  "Jewelcrafting",
+  "Leatherworking",
+  "Tailoring",
+  "Cooking",
+];
 
-const spells = [];
-const seen = new Set();
-const pattern = /"(\d+)":\{"name_enus":"((?:\\.|[^"\\])*)"/g;
-let match;
-while ((match = pattern.exec(guide))) {
-  const id = Number(match[1]);
-  const window = guide.slice(match.index, match.index + 280);
-  if (!window.includes('"skillcategory":11') || seen.has(id)) continue;
-  seen.add(id);
-  spells.push(id);
-}
-
-function unescapeName(value) {
-  return value.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(Number.parseInt(hex, 16))).replace(/\\"/g, '"');
-}
-
-function itemName(html, itemId) {
-  const found = new RegExp(`"${itemId}":\\{"name_enus":"((?:\\\\.|[^"\\\\])*)"`).exec(html);
-  return found ? unescapeName(found[1]) : `Item ${itemId}`;
-}
-
-async function loadSpell(spellId) {
-  const response = await fetch(`https://www.wowhead.com/spell=${spellId}`, {
-    headers: { "user-agent": "Mozilla/5.0 GoldGoblin catalogue" },
-  });
-  if (!response.ok) throw new Error(`spell ${spellId} returned ${response.status}`);
-  const html = await response.text();
-  const title = /<title>([^<]+)<\/title>/.exec(html)?.[1]?.replace(/ - Spell - World of Warcraft$/, "") ?? `Spell ${spellId}`;
-  const created = /"creates":\[(\d+)/.exec(html);
-  const reagentList = /"reagents":\[((?:\[[0-9]+,[0-9]+\],?)*)\]/.exec(html);
-  const skill = /"skill":\[(\d+)\]/.exec(html);
-  if (!created || !skill) throw new Error(`spell ${spellId} has no crafted item`);
-  const reagents = [];
-  if (reagentList?.[1]) {
-    for (const pair of reagentList[1].matchAll(/\[(\d+),(\d+)\]/g)) {
-      reagents.push({
-        itemId: Number(pair[1]),
-        name: itemName(html, Number(pair[1])),
-        quantity: Number(pair[2]),
-      });
+function readBracket(text, start) {
+  let depth = 0;
+  for (let index = start; index < text.length; index += 1) {
+    if (text[index] === "[") depth += 1;
+    else if (text[index] === "]") {
+      depth -= 1;
+      if (depth === 0) return text.slice(start, index + 1);
     }
   }
-  return {
-    itemId: Number(created[1]),
-    decorId: Number(created[1]),
-    name: title,
-    profession: skillNames[Number(skill[1])] ?? `Skill ${skill[1]}`,
-    recipeId: spellId,
-    reagents,
-  };
+  return null;
 }
 
-const items = [];
+function recordsFrom(html) {
+  const records = [];
+  const marker = '"entityId":';
+  let cursor = 0;
+  while (cursor < html.length) {
+    const index = html.indexOf(marker, cursor);
+    if (index < 0) break;
+    cursor = index + marker.length;
+    const spellId = Number(/^(\d+)/.exec(html.slice(cursor))?.[1]);
+    const next = html.indexOf(marker, cursor);
+    const window = html.slice(index, next < 0 ? index + 12000 : next);
+    const reagentAt = window.indexOf('"reagents":');
+    const skillAt = window.indexOf('"skill":');
+    if (!spellId || reagentAt < 0 || skillAt < 0 || reagentAt > skillAt) continue;
+    const arrayText = readBracket(window, window.indexOf("[", reagentAt));
+    const skillName = /"name":"([^"]+)"/.exec(window.slice(skillAt))?.[1];
+    const profession = professions.find((name) => skillName?.endsWith(name));
+    if (!arrayText || !profession) continue;
+    let reagents;
+    try {
+      reagents = JSON.parse(arrayText).map((reagent) => ({
+        itemId: reagent.item,
+        name: reagent.name,
+        quantity: reagent.quantity,
+      }));
+    } catch {
+      continue;
+    }
+    const expansion = /"groupName":"Expansion Aesthetic","id":\d+,"name":"([^"]+)"/.exec(window)?.[1];
+    const craftName = /"entityId":\d+,"name":"((?:\\.|[^"\\])*)"/.exec(window)?.[1];
+    records.push({
+      recipeId: spellId,
+      name: craftName?.replace(/\\"/g, '"') ?? `Spell ${spellId}`,
+      profession,
+      expansion: expansion ?? skillName.slice(0, skillName.length - profession.length).trim(),
+      reagents: reagents.filter((reagent) => reagent.itemId > 0 && reagent.quantity > 0),
+    });
+  }
+  return records;
+}
+
+async function createdItemId(spellId, reagentIds) {
+  const response = await fetch(`https://nether.wowhead.com/tooltip/spell/${spellId}`, {
+    headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" },
+  });
+  if (!response.ok) throw new Error(`spell ${spellId} returned ${response.status}`);
+  const text = await response.text();
+  const reagentSet = new Set(reagentIds);
+  const ignored = new Set([118722]);
+  const extras = [...new Set([...text.matchAll(/item=(\d+)/g)].map((match) => Number(match[1])))].filter(
+    (id) => !reagentSet.has(id) && !ignored.has(id),
+  );
+  if (extras.length === 1) return extras[0];
+  throw new Error(`spell ${spellId} created item was ${extras.join(",") || "missing"}`);
+}
+
+const seen = new Set();
+const records = [];
+for (const path of process.argv.slice(2)) {
+  for (const record of recordsFrom(readFileSync(path, "utf8"))) {
+    if (seen.has(record.recipeId) || record.reagents.length === 0) continue;
+    seen.add(record.recipeId);
+    records.push(record);
+  }
+}
+
+const outputPath = new URL("../src/data/decor.json", import.meta.url);
+const existing = JSON.parse(readFileSync(outputPath, "utf8"));
+const known = new Set(existing.map((item) => item.recipeId));
+const pending = records.filter((record) => !known.has(record.recipeId));
+process.stderr.write(`resuming ${pending.length} of ${records.length}\n`);
+
 const failures = [];
-for (let index = 0; index < spells.length; index += 4) {
-  const batch = spells.slice(index, index + 4);
-  const results = await Promise.all(
-    batch.map(async (spellId) => {
+const items = [...existing];
+for (let index = 0; index < pending.length; index += 3) {
+  const batch = pending.slice(index, index + 3);
+  const created = await Promise.all(
+    batch.map(async (record) => {
       try {
-        return await loadSpell(spellId);
+        return { ...record, itemId: await createdItemId(record.recipeId, record.reagents.map((reagent) => reagent.itemId)) };
       } catch (error) {
         failures.push(error instanceof Error ? error.message : String(error));
         return null;
       }
     }),
   );
-  items.push(...results.filter(Boolean));
-  process.stderr.write(`fetched ${Math.min(index + 4, spells.length)} / ${spells.length}\n`);
+  items.push(...created.filter(Boolean));
+  process.stderr.write(`items ${items.length} / ${records.length}\n`);
+  await new Promise((resolve) => setTimeout(resolve, 400));
 }
 
-items.sort((left, right) => left.name.localeCompare(right.name, "en-GB"));
-writeFileSync(new URL("../src/data/decor.json", import.meta.url), `${JSON.stringify(items, null, 2)}\n`);
-process.stderr.write(`wrote ${items.length} crafts, ${failures.length} failures\n`);
-if (failures.length) process.stderr.write(`${failures.join("\n")}\n`);
+const byRecipe = new Map(records.map((record) => [record.recipeId, record]));
+for (const item of items) {
+  const source = byRecipe.get(item.recipeId);
+  if (!source) continue;
+  item.name = source.name;
+  item.profession = source.profession;
+  item.expansion = source.expansion;
+  item.reagents = source.reagents;
+}
+
+items.sort((left, right) => left.expansion.localeCompare(right.expansion, "en-GB") || left.name.localeCompare(right.name, "en-GB"));
+const catalogue = items.map((item) => ({
+  itemId: item.itemId,
+  decorId: item.itemId,
+  name: item.name,
+  profession: item.profession,
+  expansion: item.expansion,
+  recipeId: item.recipeId,
+  reagents: item.reagents,
+}));
+writeFileSync(new URL("../src/data/decor.json", import.meta.url), `${JSON.stringify(catalogue, null, 2)}\n`);
+process.stderr.write(`wrote ${catalogue.length}, failures ${failures.length}\n`);
+if (failures.length) process.stderr.write(`${failures.slice(0, 20).join("\n")}\n`);

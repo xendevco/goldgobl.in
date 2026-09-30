@@ -19,8 +19,8 @@ export function usePrices(itemIds: number[], connectedRealmId?: number | null) {
     try {
       const next: Record<number, PriceQuote> = {};
       let stale = false;
-      for (let index = 0; index < ids.length; index += 150) {
-        const result = await getPrices({ region, itemIds: ids.slice(index, index + 150), connectedRealmId });
+      for (let index = 0; index < ids.length; index += 800) {
+        const result = await getPrices({ region, itemIds: ids.slice(index, index + 800), connectedRealmId });
         for (const quote of result.quotes) next[quote.itemId] = quote;
         stale = stale || result.stale;
       }

@@ -208,7 +208,7 @@ function parseItemIds(value) {
     const id = Number(part);
     if (Number.isInteger(id) && id > 0) ids.push(id);
   }
-  return [...new Set(ids)].slice(0, 200);
+  return [...new Set(ids)].slice(0, 800);
 }
 
 async function readBoundedJson(response) {
@@ -331,15 +331,19 @@ export function parseTsmSaleRates(csv) {
     const fields = parseCsvLine(lines[index]);
     const itemId = Number(fields[idIndex]);
     const saleRate = Number(fields[rateIndex]);
+    const soldPerDay = Number(fields[header.indexOf("soldPerDay")]);
     if (!Number.isInteger(itemId) || itemId <= 0 || !Number.isFinite(saleRate)) continue;
-    rates[itemId] = saleRate;
+    rates[itemId] = {
+      saleRate,
+      soldPerDay: Number.isFinite(soldPerDay) ? soldPerDay : null,
+    };
   }
   return rates;
 }
 
 async function tsmSaleRates(region, itemIds) {
   if (itemIds.length === 0 || !REGIONS[region]) return new Map();
-  const cacheKey = new Request(`https://goldgoblin-cache.internal/tsm-sale-rates/${region}`);
+  const cacheKey = new Request(`https://goldgoblin-cache.internal/tsm-region-stats/${region}`);
   const cached = await caches.default.match(cacheKey);
   let rates = cached ? await cached.json() : null;
   if (!rates) {
@@ -356,8 +360,9 @@ async function tsmSaleRates(region, itemIds) {
   }
   const quotes = new Map();
   for (const itemId of itemIds) {
-    const saleRate = rates[itemId];
-    if (typeof saleRate === "number") quotes.set(itemId, saleRate);
+    const entry = rates[itemId];
+    if (typeof entry === "number") quotes.set(itemId, { saleRate: entry, soldPerDay: null });
+    else if (entry && typeof entry.saleRate === "number") quotes.set(itemId, entry);
   }
   return quotes;
 }
@@ -378,7 +383,8 @@ async function liveQuotes(env, region, itemIds, connectedRealmId) {
   const quotes = itemIds.map((itemId) => ({
     itemId,
     marketValue: blizzard.prices.get(itemId) ?? null,
-    saleRate: saleRates.get(itemId) ?? null,
+    saleRate: saleRates.get(itemId)?.saleRate ?? null,
+    soldPerDay: saleRates.get(itemId)?.soldPerDay ?? null,
     updatedAt: now,
     source: "blizzard",
   }));

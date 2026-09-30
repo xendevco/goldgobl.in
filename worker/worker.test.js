@@ -90,8 +90,9 @@ test("parseTsmSaleRates reads the public region CSV", () => {
     "256963,Thalassian Lumber,1,1,1,not-a-rate,0,2026-09-30T00:33:37Z",
   ].join("\n");
   const rates = parseTsmSaleRates(csv);
-  assert.equal(rates[262601], 0.022);
-  assert.equal(rates[3042], 0.036);
+  assert.equal(rates[262601].saleRate, 0.022);
+  assert.equal(rates[262601].soldPerDay, 0.11);
+  assert.equal(rates[3042].saleRate, 0.036);
   assert.equal(rates[256963], undefined);
 });
 

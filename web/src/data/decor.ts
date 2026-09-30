@@ -7,11 +7,31 @@ export type DecorReagent = {
   quantity: number;
 };
 
+export type DecorProfession = CraftingProfession | "Cooking";
+
+export const DECOR_EXPANSIONS = [
+  "Midnight",
+  "The War Within",
+  "Dragonflight",
+  "Shadowlands",
+  "Battle for Azeroth",
+  "Legion",
+  "Warlords of Draenor",
+  "Mists of Pandaria",
+  "Cataclysm",
+  "Wrath of the Lich King",
+  "Burning Crusade",
+  "Classic",
+] as const;
+
+export type DecorExpansion = (typeof DECOR_EXPANSIONS)[number];
+
 export type DecorItem = {
   itemId: number;
   decorId: number;
   name: string;
-  profession: CraftingProfession;
+  profession: DecorProfession;
+  expansion: DecorExpansion | string;
   recipeId: number;
   reagents: DecorReagent[];
 };
@@ -19,6 +39,17 @@ export type DecorItem = {
 export const decorItems = decorJson as DecorItem[];
 
 export const THALASSIAN_LUMBER_ID = 256963;
+
+export function isLumberReagent(reagent: { name: string }): boolean {
+  return reagent.name.endsWith("Lumber");
+}
+
+export function decorExpansions(items: DecorItem[] = decorItems): string[] {
+  const present = new Set(items.map((item) => item.expansion));
+  const known = DECOR_EXPANSIONS.filter((expansion) => present.has(expansion));
+  const extra = [...present].filter((expansion) => !known.includes(expansion as DecorExpansion)).sort();
+  return [...known, ...extra];
+}
 
 export function decorReagentIds(items: DecorItem[] = decorItems): number[] {
   const ids = new Set<number>();

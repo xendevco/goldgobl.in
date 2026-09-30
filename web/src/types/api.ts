@@ -6,6 +6,7 @@ export type PriceQuote = {
   itemId: number;
   marketValue: number | null;
   saleRate: number | null;
+  soldPerDay?: number | null;
   updatedAt: string;
   source: PriceSource;
 };

@@ -3,8 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RealmPicker } from "@/components/RealmPicker";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SortableTable } from "@/components/SortableTable";
-import { THALASSIAN_LUMBER_ID, decorItems, decorReagentIds } from "@/data/decor";
+import { decorExpansions, decorItems, decorReagentIds, isLumberReagent } from "@/data/decor";
 import { usePrices } from "@/hooks/usePrices";
 import { getRealms } from "@/lib/api";
 import { formatCopper, formatPercent } from "@/lib/format";
@@ -35,6 +36,7 @@ export function ProfitsPage() {
   const setHomeRealmId = useRoster((state) => state.setHomeRealmId);
   const [realms, setRealms] = useState<Realm[]>([]);
   const [lumberGold, setLumberGold] = useState(0);
+  const [view, setView] = useState("profit");
   const homeRealm = realms.find((realm) => realm.id === settings.homeRealmId);
   const reagentPrices = usePrices(decorReagentIds());
   const marketPrices = usePrices(
@@ -67,14 +69,15 @@ export function ProfitsPage() {
   }, [realms, setHomeRealmId, settings.homeRealmId]);
 
   const rows = decorItems.map((item) => {
-    const bought = item.reagents.filter((reagent) => reagent.itemId !== THALASSIAN_LUMBER_ID);
-    const lumberQty = item.reagents.find((reagent) => reagent.itemId === THALASSIAN_LUMBER_ID)?.quantity ?? 0;
+    const bought = item.reagents.filter((reagent) => !isLumberReagent(reagent));
+    const lumberQty = item.reagents.filter(isLumberReagent).reduce((total, reagent) => total + reagent.quantity, 0);
     const materials = partialReagentCost(
       bought,
       new Map(bought.map((reagent) => [reagent.itemId, reagentPrices.quotes[reagent.itemId]?.marketValue ?? null])),
     );
     const sell = marketPrices.quotes[item.itemId]?.marketValue ?? null;
     const saleRate = marketPrices.quotes[item.itemId]?.saleRate ?? null;
+    const soldPerDay = marketPrices.quotes[item.itemId]?.soldPerDay ?? null;
     const yieldInput = {
       sellPrice: sell ?? 0,
       saleRate: saleRate ?? 0,
@@ -91,8 +94,15 @@ export function ProfitsPage() {
       sell == null || saleRate == null || lumberQty === 0
         ? null
         : (expectedRevenue(yieldInput) - expectedReagentCost({ reagentCost: materials.total, ...yieldInput })) / lumberQty;
-    return { item, cost: materials.total + lumberCost, missing: materials.missing, sell, saleRate, net, perLog, lumberQty };
+    return { item, cost: materials.total + lumberCost, missing: materials.missing, sell, saleRate, soldPerDay, net, perLog, lumberQty };
   });
+  const visibleRows = rows.filter((row) => view === "all" || view === "profit" || view === "sellers" || row.item.expansion === view);
+  const rankedRows =
+    view === "sellers"
+      ? [...visibleRows].sort((left, right) => (right.soldPerDay ?? -1) - (left.soldPerDay ?? -1)).slice(0, 25)
+      : view === "profit"
+        ? [...visibleRows].sort((left, right) => (right.perLog ?? Number.NEGATIVE_INFINITY) - (left.perLog ?? Number.NEGATIVE_INFINITY)).slice(0, 25)
+        : visibleRows;
   const loading = reagentPrices.loading || marketPrices.loading;
   const error = reagentPrices.error ?? marketPrices.error;
 
@@ -102,10 +112,30 @@ export function ProfitsPage() {
         <div>
           <h1 className="text-lg font-semibold">Crafting profitability</h1>
           <p className="text-muted-foreground text-xs">
-            {decorItems.length} Midnight profession crafts. Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Per log is the expected gold from one Thalassian Lumber after bought reagents, the sale rate, and the auction house cut.
+            {view === "sellers"
+              ? "The 25 crafts that sell most often, using TradeSkillMaster's daily sales."
+              : view === "profit"
+                ? "The 25 crafts with the best expected gold per log."
+                : `${rankedRows.length} crafts${view === "all" ? " across every expansion" : ` from ${view}`}.`}{" "}
+            Market is the cheapest listing on {homeRealm?.name ?? "the home realm"}. Per log is the expected gold from one piece of lumber after bought reagents and the sale rate.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <Select value={view} onValueChange={setView}>
+            <SelectTrigger size="sm" aria-label="Decor list" className="w-52">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="profit">Best expected profit</SelectItem>
+              <SelectItem value="sellers">Best sellers</SelectItem>
+              <SelectItem value="all">All expansions</SelectItem>
+              {decorExpansions().map((expansion) => (
+                <SelectItem key={expansion} value={expansion}>
+                  {expansion}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <RealmPicker realms={realms} value={settings.homeRealmId} onChange={setHomeRealmId} />
           {reagentPrices.stale || marketPrices.stale ? <Badge variant="outline">Stale cache</Badge> : null}
           {loading ? <span className="text-muted-foreground text-xs">Loading prices</span> : null}
@@ -141,12 +171,14 @@ export function ProfitsPage() {
       {error ? <p className="text-destructive text-xs">{error}</p> : null}
       <div className="border-border overflow-hidden rounded-md border">
         <SortableTable
-          rows={rows}
-          initialKey="perLog"
+          key={view}
+          rows={rankedRows}
+          initialKey={view === "sellers" ? "sold" : "perLog"}
           initialDirection="desc"
           rowKey={(row) => String(row.item.itemId)}
           columns={[
             { key: "name", header: "Craft", sortValue: (row) => row.item.name, cell: (row) => row.item.name },
+            { key: "expansion", header: "Expansion", sortValue: (row) => row.item.expansion, cell: (row) => row.item.expansion },
             { key: "profession", header: "Profession", sortValue: (row) => row.item.profession, cell: (row) => row.item.profession },
             {
               key: "cost",
@@ -166,6 +198,13 @@ export function ProfitsPage() {
               align: "right",
               sortValue: (row) => row.sell ?? -1,
               cell: (row) => formatCopper(row.sell),
+            },
+            {
+              key: "sold",
+              header: "Sold / day",
+              align: "right",
+              sortValue: (row) => row.soldPerDay ?? -1,
+              cell: (row) => (row.soldPerDay == null ? "n/a" : row.soldPerDay >= 10 ? `${Math.round(row.soldPerDay)}` : `${Math.round(row.soldPerDay * 10) / 10}`),
             },
             {
               key: "sale",
