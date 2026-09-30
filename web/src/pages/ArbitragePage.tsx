@@ -5,8 +5,8 @@ import { RealmPicker } from "@/components/RealmPicker";
 import { SortableTable } from "@/components/SortableTable";
 import { arbitrageWatchlist } from "@/data/watchlist";
 import { getPrices, getRealms } from "@/lib/api";
-import { arbitrageSpread, rankSpreads, type SpreadRow } from "@/lib/arbitrage";
-import { earlierAsOf, formatCopper } from "@/lib/format";
+import { arbitrageSpread, expectedArbitrage, rankSpreads, type SpreadRow } from "@/lib/arbitrage";
+import { earlierAsOf, formatCopper, formatPercent } from "@/lib/format";
 import { useRoster } from "@/stores/roster";
 import type { Realm } from "@/types/api";
 
@@ -39,9 +39,16 @@ export function ArbitragePage() {
 
   useEffect(() => {
     if (realms.length === 0) return;
-    if (homeRealmId == null) setHomeRealmId(realms[0].id);
-    if (watchRealmIds.length === 0) setWatchRealmIds(realms.slice(1, 3).map((realm) => realm.id));
-  }, [homeRealmId, realms, setHomeRealmId, setWatchRealmIds, watchRealmIds.length]);
+    if (homeRealmId == null || !realms.some((realm) => realm.id === homeRealmId)) {
+      const preferred = realms.find((realm) => realm.name.includes("Tarren Mill")) ?? realms.find((realm) => realm.name === "Silvermoon") ?? realms[0];
+      setHomeRealmId(preferred.id);
+      return;
+    }
+    const known = new Set(realms.map((realm) => realm.id));
+    const valid = watchRealmIds.filter((realmId) => known.has(realmId) && realmId !== homeRealmId);
+    if (valid.length === watchRealmIds.length) return;
+    setWatchRealmIds(valid.length > 0 ? valid : realms.filter((realm) => realm.id !== homeRealmId).slice(0, 2).map((realm) => realm.id));
+  }, [homeRealmId, realms, setHomeRealmId, setWatchRealmIds, watchRealmIds]);
 
   useEffect(() => {
     const remoteRealmIds = watchRealmIds.filter((realmId) => realmId !== homeRealmId);
@@ -58,16 +65,21 @@ export function ArbitragePage() {
     ])
       .then(([home, ...remotes]) => {
         if (cancelled) return;
-        const homePrices = new Map(home.quotes.map((quote) => [quote.itemId, quote.marketValue]));
+        const homeQuotes = new Map(home.quotes.map((quote) => [quote.itemId, quote]));
         const ranked: SpreadRow[] = [];
         for (const item of arbitrageWatchlist) {
-          const homePrice = homePrices.get(item.itemId);
+          const homeQuote = homeQuotes.get(item.itemId);
+          const homePrice = homeQuote?.marketValue;
           if (homePrice == null) continue;
           let best: SpreadRow | null = null;
           for (const remote of remotes) {
-            const remotePrice = remote.result.quotes.find((quote) => quote.itemId === item.itemId)?.marketValue;
+            const remoteQuote = remote.result.quotes.find((quote) => quote.itemId === item.itemId);
+            const remotePrice = remoteQuote?.marketValue;
             if (remotePrice == null) continue;
+            const saleRate = homeQuote?.saleRate ?? remoteQuote?.saleRate ?? null;
+            const soldPerDay = homeQuote?.soldPerDay ?? remoteQuote?.soldPerDay ?? null;
             const spread = arbitrageSpread(homePrice, remotePrice);
+            const expected = expectedArbitrage(homePrice, remotePrice, saleRate);
             const row: SpreadRow = {
               itemId: item.itemId,
               name: item.name,
@@ -75,8 +87,15 @@ export function ArbitragePage() {
               remotePrice,
               remoteRealm: realms.find((realm) => realm.id === remote.realmId)?.name ?? String(remote.realmId),
               spread,
+              saleRate,
+              soldPerDay,
+              expected,
             };
-            if (!best || row.spread > best.spread) best = row;
+            const candidateWins =
+              best == null ||
+              (expected ?? Number.NEGATIVE_INFINITY) > (best.expected ?? Number.NEGATIVE_INFINITY) ||
+              (expected === best.expected && spread > best.spread);
+            if (candidateWins) best = row;
           }
           if (best) ranked.push(best);
         }
@@ -99,7 +118,7 @@ export function ArbitragePage() {
       <div>
         <h1 className="text-lg font-semibold">Cross-realm arbitrage</h1>
         <p className="text-muted-foreground text-xs">
-          Spread is the remote price minus the home price minus the auction house cut. Home realm: {realms.find((realm) => realm.id === homeRealmId)?.name ?? homeNameFallback(homeRealmId)}. <PriceStamp asOf={asOf} stale={stale} />
+          Expected gold is the remote price after the auction house cut, multiplied by the regional sale rate, minus what you pay at home. A negative number loses gold if the item sells only as often as that rate. Home realm: {realms.find((realm) => realm.id === homeRealmId)?.name ?? homeNameFallback(homeRealmId)}. <PriceStamp asOf={asOf} stale={stale} />
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-3">
@@ -124,7 +143,7 @@ export function ArbitragePage() {
       <div className="border-border overflow-hidden rounded-md border">
         <SortableTable
           rows={rows}
-          initialKey="spread"
+          initialKey="expected"
           initialDirection="desc"
           rowKey={(row) => String(row.itemId)}
           columns={[
@@ -133,11 +152,36 @@ export function ArbitragePage() {
             { key: "home", header: "Home", align: "right", sortValue: (row) => row.homePrice, cell: (row) => formatCopper(row.homePrice) },
             { key: "ask", header: "Remote", align: "right", sortValue: (row) => row.remotePrice, cell: (row) => formatCopper(row.remotePrice) },
             {
+              key: "sold",
+              header: "Sold / day",
+              align: "right",
+              sortValue: (row) => row.soldPerDay ?? -1,
+              cell: (row) => (row.soldPerDay == null ? "n/a" : row.soldPerDay >= 10 ? `${Math.round(row.soldPerDay)}` : `${Math.round(row.soldPerDay * 10) / 10}`),
+            },
+            {
+              key: "sale",
+              header: "Sale rate",
+              align: "right",
+              sortValue: (row) => row.saleRate ?? -1,
+              cell: (row) => (row.saleRate == null ? "n/a" : formatPercent(row.saleRate)),
+            },
+            {
               key: "spread",
-              header: "Spread",
+              header: "If it sells",
               align: "right",
               sortValue: (row) => row.spread,
               cell: (row) => <span className={row.spread < 0 ? "text-red-400" : "text-emerald-400"}>{formatCopper(row.spread)}</span>,
+            },
+            {
+              key: "expected",
+              header: "Expected",
+              align: "right",
+              sortValue: (row) => row.expected ?? Number.NEGATIVE_INFINITY,
+              cell: (row) => (
+                <span className={row.expected == null ? "text-muted-foreground" : row.expected < 0 ? "text-red-400" : "text-emerald-400"}>
+                  {formatCopper(row.expected)}
+                </span>
+              ),
             },
           ]}
         />

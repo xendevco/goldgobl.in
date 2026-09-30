@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { arbitrageSpread, rankSpreads } from "@/lib/arbitrage";
+import { arbitrageSpread, expectedArbitrage, rankSpreads } from "@/lib/arbitrage";
 import { decodeExport, encodeExport, importRoster } from "@/lib/import";
 import { cheapestPath, type LevellingRecipe } from "@/lib/levelling";
 import { optimiseRoster } from "@/lib/roster";
@@ -72,13 +72,36 @@ describe("yield maths", () => {
 });
 
 describe("arbitrage", () => {
-  it("ranks the wider realm spread first", () => {
+  it("ranks by expected gold after the sale rate, not the raw spread", () => {
     expect(arbitrageSpread(10000, 15000)).toBeCloseTo(4250);
+    expect(expectedArbitrage(1000, 12000, 0.8)).toBeCloseTo(8120);
+    expect(expectedArbitrage(10000, 20000, 0.01)).toBeLessThan(0);
+    expect(expectedArbitrage(10000, 20000, null)).toBeNull();
     const ranked = rankSpreads([
-      { itemId: 1, name: "Scroll", homePrice: 10000, remotePrice: 12000, remoteRealm: "Draenor", spread: arbitrageSpread(10000, 12000) },
-      { itemId: 2, name: "Lightpost", homePrice: 10000, remotePrice: 20000, remoteRealm: "Kazzak", spread: arbitrageSpread(10000, 20000) },
+      {
+        itemId: 2,
+        name: "Lightpost",
+        homePrice: 10000,
+        remotePrice: 20000,
+        remoteRealm: "Kazzak",
+        spread: arbitrageSpread(10000, 20000),
+        saleRate: 0.01,
+        soldPerDay: 0.1,
+        expected: expectedArbitrage(10000, 20000, 0.01),
+      },
+      {
+        itemId: 1,
+        name: "Scroll",
+        homePrice: 1000,
+        remotePrice: 12000,
+        remoteRealm: "Draenor",
+        spread: arbitrageSpread(1000, 12000),
+        saleRate: 0.8,
+        soldPerDay: 4,
+        expected: expectedArbitrage(1000, 12000, 0.8),
+      },
     ]);
-    expect(ranked[0].itemId).toBe(2);
+    expect(ranked[0].itemId).toBe(1);
   });
 });
 
