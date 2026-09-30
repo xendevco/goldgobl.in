@@ -39,7 +39,7 @@ export function LevellingPage() {
   const priced = priceMapFrom(prices.quotes, itemIds);
   const start = Math.min(Math.max(skill, 1), cap);
   const segments = useMemo(() => {
-    const built: { from: number; to: number; rows: { recipeName: string; from: number; to: number; expectedCopper: number; chance: number; crafts?: number }[]; cost: number }[] = [];
+    const built: { from: number; to: number; rows: { recipeName: string; from: number; to: number; expectedCopper: number; chance: number; crafts?: number; assumed?: boolean }[]; cost: number }[] = [];
     let cursor = start;
     const covered = new Set<number>();
     while (cursor < cap && !covered.has(cursor)) {
